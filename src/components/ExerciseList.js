@@ -18,9 +18,9 @@ class ExerciseList extends Component {
       }
     `;
 
-    // This function is processing our data from the search
-    // filter into a format we can pass to the GraphQL query
-    // to filter our search.
+    // This function is processing our data from the search filter
+    // into a format we can pass as the $filter variable to the GraphQL
+    // query to filter our search.
     const consolidateFilters = (filters) => {
       let bodySections = [];
       let primaryMovers = [];
@@ -107,11 +107,9 @@ class ExerciseList extends Component {
             if (loading) return <div>Fetching..</div>
             if (error) return <div>Something happened...</div>
 
-            const { exercises } = data;
-
             return (
               <div>
-                {exercises.map((exercise, index) => (
+                {data.exercises.map((exercise, index) => (
                   <div key={index}>
                     <h3>{exercise.name}</h3>
                   </div>

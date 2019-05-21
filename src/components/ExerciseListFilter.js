@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import BodySectionsFieldset from './BodySectionsFieldset';
-import PrimaryMoversFieldset from './PrimaryMoversFieldset';
-import MovementTypesFieldset from './MovementTypesFieldset';
-import TrainingPhasesFieldset from './TrainingPhasesFieldset';
-import WorkoutTypesFieldset from './WorkoutTypesFieldset';
-import EquipmentFieldset from './EquipmentFieldset';
+import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
+import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
+import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
+import TrainingPhasesFieldset from './fieldsets/TrainingPhasesFieldset';
+import WorkoutTypesFieldset from './fieldsets/WorkoutTypesFieldset';
+import EquipmentFieldset from './fieldsets/EquipmentFieldset';
 
 class ExerciseListFilters extends Component {
   render() {

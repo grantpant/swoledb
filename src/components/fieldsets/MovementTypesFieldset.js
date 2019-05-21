@@ -1,5 +1,5 @@
 import React from 'react';
-import MovementTypeInput from './MovementTypeInput';
+import MovementTypeInput from './inputs/MovementTypeInput';
 
 const movementTypes = ['Push', 'Pull'];
 

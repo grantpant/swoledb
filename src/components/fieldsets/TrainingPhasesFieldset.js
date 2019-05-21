@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TrainingPhaseInput from './TrainingPhaseInput';
+import TrainingPhaseInput from './inputs/TrainingPhaseInput';
 
 const trainingPhases = ['Stability', 'Strength', 'Hypertrophy', 'Power'];
 

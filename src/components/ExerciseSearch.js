@@ -104,9 +104,7 @@ class ExerciseSearch extends Component{
           onWorkoutTypesChange={this.onWorkoutTypesChange}
           onEquipmentChange={this.onEquipmentChange}
         />
-        <ExerciseList
-          filters={this.state}
-        />
+        <ExerciseList filters={this.state} />
       </Fragment>
     );
   }

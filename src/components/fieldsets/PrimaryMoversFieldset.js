@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import PrimaryMoverInput from './PrimaryMoverInput';
+import PrimaryMoverInput from './inputs/PrimaryMoverInput';
 
 const primaryMovers = ['Quads', 'Hamstrings', 'Glutes', 'Calves', 'Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Core'];
 

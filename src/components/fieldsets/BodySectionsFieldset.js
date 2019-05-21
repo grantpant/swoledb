@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BodySectionInput from './BodySectionInput';
+import BodySectionInput from './inputs/BodySectionInput';
 
 const bodySections = ['Upper', 'Lower', 'Core', 'Full'];
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkoutTypeInput from './WorkoutTypeInput';
+import WorkoutTypeInput from './inputs/WorkoutTypeInput';
 
 const workoutTypes = ['Warm-up', 'Resistence', 'H.I.I.T.'];
 

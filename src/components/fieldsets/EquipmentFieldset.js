@@ -1,5 +1,5 @@
 import React from 'react';
-import EquipmentPieceInput from './EquipmentPieceInput';
+import EquipmentPieceInput from './inputs/EquipmentPieceInput';
 
 const equipment = ['Barbell', 'Barbell rack', 'Dumbbells', 'Bench', 'Kettle bell', 'Smith rack', 'Cable', 'Dip station', 'Roman chair', 'Pull-up bar', 'TRX straps', 'Step', 'Box', 'Band', 'Medicine ball', 'Swiss ball', 'BOSU ball', 'Foam roller', 'Cones', 'Agility ladder', 'Mini hurdles'];
 
