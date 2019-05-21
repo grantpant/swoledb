@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 
-const WorkoutTypeInput = (props) => (
+const TrainingPhaseInput = (props) => (
   <Fragment>
     <label>
-      {props.workoutType}{' '}
+      {props.trainingPhase}{' '}
       <input
         type="checkbox"
-        name="workout-type"
-        value={props.workoutType.toLowerCase()}
+        name="training-phase"
+        value={props.trainingPhase.toLowerCase()}
         checked={props.checked}
         onChange={props.onChange}
       />
@@ -16,4 +16,4 @@ const WorkoutTypeInput = (props) => (
   </Fragment>
 );
 
-export default WorkoutTypeInput;
+export default TrainingPhaseInput;

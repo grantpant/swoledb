@@ -3,7 +3,7 @@ import PrimaryMoverInput from './PrimaryMoverInput';
 
 const primaryMovers = ['Quads', 'Hamstrings', 'Glutes', 'Calves', 'Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Core'];
 
-class PrimaryMoverFieldset extends Component {
+class PrimaryMoversFieldset extends Component {
   onChange = (e) => {
     const primaryMover = e.target.value;
     this.props.onChange(primaryMover);
@@ -18,7 +18,7 @@ class PrimaryMoverFieldset extends Component {
   render() {
     return (
       <fieldset id="primary-mover">
-        <h4>Primary Mover</h4>
+        <h4>Primary Movers</h4>
         {primaryMovers.map((mover, i) => (
           <PrimaryMoverInput
             key={i}
@@ -33,4 +33,4 @@ class PrimaryMoverFieldset extends Component {
   }
 }
 
-export default PrimaryMoverFieldset;
+export default PrimaryMoversFieldset;

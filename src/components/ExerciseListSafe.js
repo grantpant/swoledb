@@ -74,24 +74,6 @@ class ExerciseList extends Component {
       if (primaryMovers.length !== 0) {
         filter.AND.push({ primaryMover_in: primaryMovers });
       }
-      if (movementTypes.length !== 0) {
-        filter.AND.push({ movementType_in: movementTypes });
-      }
-      if (trainingPhases.length !== 0) {
-        trainingPhases.forEach((trainingPhase) => {
-          filter.AND.push({ trainingPhases_some: { name: trainingPhase } });
-        });
-      }
-      if (workoutTypes.length !== 0) {
-        workoutTypes.forEach((workoutType) => {
-          filter.AND.push({ workoutTypes_some: { name: workoutType } });
-        });
-      }
-      if (equipment.length !== 0) {
-        equipment.forEach((equipmentPiece) => {
-          filter.AND.push({ equipment_some: { name: equipmentPiece } });
-        });
-      }
 
       return filter.AND.length === 0 ? null : filter;
     };
@@ -102,7 +84,7 @@ class ExerciseList extends Component {
     return (
       <Fragment>
         <h1>Exercise List</h1>
-        <Query query={EXERCISE_QUERY} variables={{ filter }}>
+        <Query query={EXERCISE_QUERY} variables={filter}>
           {({ loading, error, data }) => {
             if (loading) return <div>Fetching..</div>
             if (error) return <div>Something happened...</div>

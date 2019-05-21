@@ -3,7 +3,7 @@ import MovementTypeInput from './MovementTypeInput';
 
 const movementTypes = ['Push', 'Pull'];
 
-class MovementTypeFieldset extends React.Component {
+class MovementTypesFieldset extends React.Component {
   onChange = (e) => {
     const movementType = e.target.value;
     this.props.onChange(movementType);
@@ -18,7 +18,7 @@ class MovementTypeFieldset extends React.Component {
   render() {
     return (
       <fieldset id="movement-type">
-        <h4>Movement Type</h4>
+        <h4>Movement Types</h4>
         {movementTypes.map((moveType, i) => (
           <MovementTypeInput
             key={i}
@@ -33,4 +33,4 @@ class MovementTypeFieldset extends React.Component {
   }
 }
 
-export default MovementTypeFieldset;
+export default MovementTypesFieldset;

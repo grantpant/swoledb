@@ -3,7 +3,7 @@ import BodySectionInput from './BodySectionInput';
 
 const bodySections = ['Upper', 'Lower', 'Core', 'Full'];
 
-class BodySectionFieldset extends Component {
+class BodySectionsFieldset extends Component {
   onChange = (e) => {
     const bodySection = e.target.value;
     this.props.onChange(bodySection);
@@ -17,8 +17,8 @@ class BodySectionFieldset extends Component {
   };
   render() {
     return (
-      <fieldset id="body-section">
-        <h4>Body Section</h4>
+      <fieldset id="body-sections">
+        <h4>Body Sections</h4>
         {bodySections.map((section, i) => (
           <BodySectionInput
             key={i}
@@ -33,4 +33,4 @@ class BodySectionFieldset extends Component {
   }
 }
 
-export default BodySectionFieldset;
+export default BodySectionsFieldset;

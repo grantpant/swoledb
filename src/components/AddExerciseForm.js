@@ -1,8 +1,8 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
-import BodySectionFieldset from './BodySectionFieldset';
-import PrimaryMoverFieldset from './PrimaryMoverFieldset';
-import MovementTypeFieldset from './MovementTypeFieldset';
+import BodySectionsFieldset from './BodySectionsFieldset';
+import PrimaryMoversFieldset from './PrimaryMoversFieldset';
+import MovementTypesFieldset from './MovementTypesFieldset';
 import TrainingPhasesFieldset from './TrainingPhasesFieldset';
 import WorkoutTypesFieldset from './WorkoutTypesFieldset';
 import EquipmentFieldset from './EquipmentFieldset';
@@ -37,7 +37,7 @@ class AddExerciseForm extends React.Component {
       dipStation: false,
       romanChair: false,
       pullUpBar: false,
-      trx: false,
+      trxStraps: false,
       step: false,
       box: false,
       band: false,
@@ -154,7 +154,7 @@ class AddExerciseForm extends React.Component {
       <form className="form-container" onSubmit={this.onSubmit}>
         <fieldset className="name-fieldset">
           <label>
-            <span className="name-label-span">Exercise Name:</span>
+            <span className="name-label-span">Exercise Name: </span>
             <input
               type="text"
               name="exercise-name"
@@ -170,29 +170,38 @@ class AddExerciseForm extends React.Component {
           </div>
         </fieldset>
         <br />
-        <BodySectionFieldset
+        <BodySectionsFieldset
           inputType="radio"
           state={this.state.bodySection}
           onChange={this.onBodySectionChange}
         />
         <div className="form-column">
-          <PrimaryMoverFieldset
+          <PrimaryMoversFieldset
             inputType="radio"
             state={this.state.primaryMover}
             onChange={this.onPrimaryMoverChange}
           />
         </div>
         <div className="form-column">
-          <MovementTypeFieldset
+          <MovementTypesFieldset
             inputType="radio"
             state={this.state.movementType}
             onChange={this.onMovementTypeChange}
           />
-          <TrainingPhasesFieldset onChange={this.onTrainingPhasesChange} />
-          <WorkoutTypesFieldset onChange={this.onWorkoutTypesChange} />
+          <TrainingPhasesFieldset
+            onChange={this.onTrainingPhasesChange}
+            state={this.state.trainingPhases}
+          />
+          <WorkoutTypesFieldset
+            onChange={this.onWorkoutTypesChange}
+            state={this.state.workoutTypes}
+          />
         </div>
         <div className="form-column">
-          <EquipmentFieldset onChange={this.onEquipmentChange} />
+          <EquipmentFieldset
+            onChange={this.onEquipmentChange}
+            state={this.state.equipment}
+          />
         </div>
       </form>
     );

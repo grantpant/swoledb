@@ -1,52 +1,36 @@
 import React from 'react';
+import WorkoutTypeInput from './WorkoutTypeInput';
+
+const workoutTypes = ['Warm-up', 'Resistence', 'H.I.I.T.'];
 
 class WorkoutTypesFieldset extends React.Component {
-  state = {
-    warmUp: false,
-    resistence: false,
-    hiit: false
-  };
   onChange = (e) => {
-    const workoutType = e.target.value;
-    this.setState((prevState) => ({ [workoutType]: !prevState[workoutType] }));
+    let workoutType = e.target.value;
+    const hasHyphen = new RegExp(/(-[\w])/, 'g').test(workoutType);
+
+    if (hasHyphen) {
+      workoutType = workoutType.replace(/(-[\w])/g, (match) => (
+        match[1].toUpperCase()
+      ));
+    }
+    if (workoutType === 'h.i.i.t.') {
+      workoutType = workoutType.replace(/\./g,'');
+    }
+
     this.props.onChange(workoutType);
   };
   render() {
     return (
       <fieldset id="workout-types" className="checkbox-set">
         <h4>Workout Types</h4>
-        <label>
-          Warm-up{' '}
-          <input
-            type="checkbox"
-            name="workout-type"
-            value="warmUp"
-            checked={this.state.warmUp}
+        {workoutTypes.map((workoutType, i) => (
+          <WorkoutTypeInput
+            key={i}
+            workoutType={workoutType}
+            checked={this.props.state[workoutType]}
             onChange={this.onChange}
           />
-        </label>
-        <br />
-        <label>
-          Resistence{' '}
-          <input
-            type="checkbox"
-            name="workout-type"
-            value="resistence"
-            checked={this.state.resistence}
-            onChange={this.onChange}
-          />
-        </label>
-        <br />
-        <label>
-          H.I.I.T.{' '}
-          <input
-            type="checkbox"
-            name="workout-type"
-            value="hiit"
-            checked={this.state.hiit}
-            onChange={this.onChange}
-          />
-        </label>
+        ))}
       </fieldset>
     );
   }
