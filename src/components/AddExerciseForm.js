@@ -151,22 +151,22 @@ class AddExerciseForm extends React.Component {
 
   render() {
     return (
-      <form className="form-container" onSubmit={this.onSubmit}>
-        <fieldset className="name-fieldset">
-          <label>
-            <span className="name-label-span">Exercise Name: </span>
+      <form className="container" onSubmit={this.onSubmit}>
+        <fieldset>
+          <div className="fieldset-header">
+            <h4>Exercise Name</h4>
+          </div>
+          <div className="fieldset-body name-fieldset-body">
             <input
+              className="name-fieldset-body__input"
               type="text"
               name="exercise-name"
               autoFocus
-              placeholder="enter exercise name"
+              placeholder="Enter exercise name"
               onChange={this.onNameChange}
               value={this.state.name}
-              size="35"
             />
-          </label>
-          <div className="button-wrapper">
-            <input type="submit" value="Submit" />
+            <button className="button" type="submit">Add Exercise</button>
           </div>
         </fieldset>
         <br />

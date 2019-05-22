@@ -94,18 +94,20 @@ class ExerciseSearch extends Component{
   };
   render() {
     return (
-      <Fragment>
-        <ExerciseListFilter
-          state={this.state}
-          onBodySectionsChange={this.onBodySectionsChange}
-          onPrimaryMoversChange={this.onPrimaryMoversChange}
-          onMovementTypesChange={this.onMovementTypesChange}
-          onTrainingPhasesChange={this.onTrainingPhasesChange}
-          onWorkoutTypesChange={this.onWorkoutTypesChange}
-          onEquipmentChange={this.onEquipmentChange}
-        />
+      <div className="search-container">
+        <div className="filter-container">
+          <ExerciseListFilter
+            state={this.state}
+            onBodySectionsChange={this.onBodySectionsChange}
+            onPrimaryMoversChange={this.onPrimaryMoversChange}
+            onMovementTypesChange={this.onMovementTypesChange}
+            onTrainingPhasesChange={this.onTrainingPhasesChange}
+            onWorkoutTypesChange={this.onWorkoutTypesChange}
+            onEquipmentChange={this.onEquipmentChange}
+          />
+        </div>
         <ExerciseList filters={this.state} />
-      </Fragment>
+      </div>
     );
   }
 }

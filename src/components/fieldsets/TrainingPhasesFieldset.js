@@ -11,15 +11,19 @@ class TrainingPhasesFieldset extends Component {
   render() {
     return (
       <fieldset id="trainingPhases" className="checkbox-set">
-        <h4>Training Phases</h4>
-        {trainingPhases.map((trainingPhase, i) => (
-          <TrainingPhaseInput
-            key={i}
-            trainingPhase={trainingPhase}
-            checked={this.props.state[trainingPhase]}
-            onChange={this.onChange}
-          />
-        ))}
+        <div className="fieldset-header">
+          <h4>Training Phases</h4>
+        </div>
+        <div className="fieldset-body">
+          {trainingPhases.map((trainingPhase, i) => (
+            <TrainingPhaseInput
+              key={i}
+              trainingPhase={trainingPhase}
+              checked={this.props.state[trainingPhase]}
+              onChange={this.onChange}
+            />
+          ))}
+        </div>
       </fieldset>
     );
   }

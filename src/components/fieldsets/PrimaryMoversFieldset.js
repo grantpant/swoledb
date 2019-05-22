@@ -18,16 +18,20 @@ class PrimaryMoversFieldset extends Component {
   render() {
     return (
       <fieldset id="primary-mover">
-        <h4>Primary Movers</h4>
-        {primaryMovers.map((mover, i) => (
-          <PrimaryMoverInput
-            key={i}
-            type={this.props.inputType}
-            mover={mover}
-            checked={this.checkedValue.call(this, mover)}
-            onChange={this.onChange}
-          />
-        ))}
+        <div className="fieldset-header">
+          <h4>Primary Movers</h4>
+        </div>
+        <div className="fieldset-body">
+          {primaryMovers.map((mover, i) => (
+            <PrimaryMoverInput
+              key={i}
+              type={this.props.inputType}
+              mover={mover}
+              checked={this.checkedValue.call(this, mover)}
+              onChange={this.onChange}
+            />
+          ))}
+        </div>
       </fieldset>
     );
   }

@@ -2,16 +2,14 @@ import React, { Fragment } from 'react';
 
 const WorkoutTypeInput = (props) => (
   <Fragment>
-    <label>
-      {props.workoutType}{' '}
-      <input
-        type="checkbox"
-        name="workout-type"
-        value={props.workoutType.toLowerCase()}
-        checked={props.checked}
-        onChange={props.onChange}
-      />
-    </label>
+    <input
+      type="checkbox"
+      name="workout-type"
+      value={props.workoutType.toLowerCase()}
+      checked={props.checked}
+      onChange={props.onChange}
+    />
+    {' '}{props.workoutType}
     <br />
   </Fragment>
 );

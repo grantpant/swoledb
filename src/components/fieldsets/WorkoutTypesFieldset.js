@@ -22,15 +22,19 @@ class WorkoutTypesFieldset extends React.Component {
   render() {
     return (
       <fieldset id="workout-types" className="checkbox-set">
-        <h4>Workout Types</h4>
-        {workoutTypes.map((workoutType, i) => (
-          <WorkoutTypeInput
-            key={i}
-            workoutType={workoutType}
-            checked={this.props.state[workoutType]}
-            onChange={this.onChange}
-          />
-        ))}
+        <div className="fieldset-header">
+          <h4>Workout Types</h4>
+        </div>
+        <div className="fieldset-body">
+          {workoutTypes.map((workoutType, i) => (
+            <WorkoutTypeInput
+              key={i}
+              workoutType={workoutType}
+              checked={this.props.state[workoutType]}
+              onChange={this.onChange}
+            />
+          ))}
+        </div>
       </fieldset>
     );
   }

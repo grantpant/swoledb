@@ -27,15 +27,19 @@ class EquipmentFieldset extends React.Component {
   render() {
     return (
       <fieldset id="equipment" className="checkbox-set">
-        <h4>Equipment</h4>
-        {equipment.map((equipmentPiece, i) => (
-          <EquipmentPieceInput
-            key={i}
-            equipmentPiece={equipmentPiece}
-            checked={this.props.state[equipmentPiece]}
-            onChange={this.onChange}
-          />
-        ))}
+        <div className="fieldset-header">
+          <h4>Equipment</h4>
+        </div>
+        <div className="fieldset-body">
+          {equipment.map((equipmentPiece, i) => (
+            <EquipmentPieceInput
+              key={i}
+              equipmentPiece={equipmentPiece}
+              checked={this.props.state[equipmentPiece]}
+              onChange={this.onChange}
+            />
+          ))}
+        </div>
       </fieldset>
     );
   }

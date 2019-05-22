@@ -18,16 +18,20 @@ class MovementTypesFieldset extends React.Component {
   render() {
     return (
       <fieldset id="movement-type">
-        <h4>Movement Types</h4>
-        {movementTypes.map((moveType, i) => (
-          <MovementTypeInput
-            key={i}
-            type={this.props.inputType}
-            moveType={moveType}
-            checked={this.checkedValue.call(this, moveType)}
-            onChange={this.onChange}
-          />
-        ))}
+        <div className="fieldset-header">
+          <h4>Movement Types</h4>
+        </div>
+        <div className="fieldset-body">
+          {movementTypes.map((moveType, i) => (
+            <MovementTypeInput
+              key={i}
+              type={this.props.inputType}
+              moveType={moveType}
+              checked={this.checkedValue.call(this, moveType)}
+              onChange={this.onChange}
+            />
+          ))}
+        </div>
       </fieldset>
     );
   }

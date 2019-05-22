@@ -2,16 +2,14 @@ import React, { Fragment } from 'react';
 
 const BodySectionInput = (props) => (
   <Fragment>
-    <label>
-      {props.section}{' '}
-      <input
-        type={props.type}
-        name="body-section"
-        value={props.section.toLowerCase()}
-        checked={props.checked}
-        onChange={props.onChange}
-      />
-    </label>
+    <input
+      type={props.type}
+      name="body-section"
+      value={props.section.toLowerCase()}
+      checked={props.checked}
+      onChange={props.onChange}
+    />
+    {' '}{props.section}
     <br />
   </Fragment>
 );

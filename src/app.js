@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import AppRouter from './routers/AppRouter';
+import 'normalize.css/normalize.css'
+import './styles/styles.scss';
 
 export const client = new ApolloClient({
   uri: 'http://localhost:4000',

@@ -100,25 +100,27 @@ class ExerciseList extends Component {
     console.log(JSON.stringify(filter, null, 2))
 
     return (
-      <Fragment>
-        <h1>Exercise List</h1>
+      <div className="exercise-list">
+        <div className="exercise-list__header">
+          <h1>Exercise List</h1>
+        </div>
         <Query query={EXERCISE_QUERY} variables={{ filter }}>
           {({ loading, error, data }) => {
             if (loading) return <div>Fetching..</div>
             if (error) return <div>Something happened...</div>
 
             return (
-              <div>
+              <div className="exercise-list__items">
                 {data.exercises.map((exercise, index) => (
                   <div key={index}>
-                    <h3>{exercise.name}</h3>
+                    <h4>{exercise.name}</h4>
                   </div>
                 ))}
               </div>
             );
           }}
         </Query>
-      </Fragment>
+      </div>
     );
   }
 }
