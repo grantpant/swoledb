@@ -1,0 +1,34 @@
+.fieldset {
+  padding: 0;
+}
+
+.fieldset__header {
+  background: $gray;
+  padding: $m-size;
+  max-width: 100%;
+  h4 {
+    color: $off-white;
+    font-size: 2.2rem;
+    margin: 0;
+  }
+}
+
+.fieldset__body {
+  padding: $m-size;
+}
+
+.fieldset__exercise-name-body {
+  display: flex;
+  align-items: center stretch;
+  padding: $m-size;
+}
+
+.fieldset__exercise-name-body__input {
+  background: $off-black-light;
+  border: 1px solid $off-black-light;
+  border-bottom: .3rem solid darken($off-black-light, 10%);
+  color: $off-white;
+  flex-grow: 1;
+  margin-right: $s-size;
+  padding: $s-size;
+}

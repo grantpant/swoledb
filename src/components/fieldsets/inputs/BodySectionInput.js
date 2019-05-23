@@ -9,7 +9,7 @@ const BodySectionInput = (props) => (
       checked={props.checked}
       onChange={props.onChange}
     />
-    {' '}{props.section}
+    <span>{' '}{props.section}</span>
     <br />
   </Fragment>
 );

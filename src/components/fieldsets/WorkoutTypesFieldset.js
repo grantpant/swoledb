@@ -21,11 +21,11 @@ class WorkoutTypesFieldset extends React.Component {
   };
   render() {
     return (
-      <fieldset id="workout-types" className="checkbox-set">
-        <div className="fieldset-header">
+      <fieldset className="fieldset">
+        <div className="fieldset__header">
           <h4>Workout Types</h4>
         </div>
-        <div className="fieldset-body">
+        <div className="fieldset__body">
           {workoutTypes.map((workoutType, i) => (
             <WorkoutTypeInput
               key={i}

@@ -5,7 +5,23 @@
   padding: $m-size 0;
 }
 
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .header__title {
   font-size: $l-size;
   margin: 0;
+}
+
+.header__nav__link {
+  color: $off-white;
+  padding: $xs-size;
+  text-decoration: none;
+}
+
+.is-active {
+  font-weight: bold;
 }

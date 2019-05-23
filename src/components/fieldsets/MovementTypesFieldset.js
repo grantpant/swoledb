@@ -17,11 +17,11 @@ class MovementTypesFieldset extends React.Component {
   };
   render() {
     return (
-      <fieldset id="movement-type">
-        <div className="fieldset-header">
+      <fieldset className="fieldset">
+        <div className="fieldset__header">
           <h4>Movement Types</h4>
         </div>
-        <div className="fieldset-body">
+        <div className="fieldset__body">
           {movementTypes.map((moveType, i) => (
             <MovementTypeInput
               key={i}

@@ -17,11 +17,11 @@ class BodySectionsFieldset extends Component {
   };
   render() {
     return (
-      <fieldset id="body-sections">
-        <div className="fieldset-header">
+      <fieldset className="fieldset">
+        <div className="fieldset__header">
           <h4>Body Sections</h4>
         </div>
-        <div className="fieldset-body">
+        <div className="fieldset__body">
           {bodySections.map((section, i) => (
             <BodySectionInput
               key={i}

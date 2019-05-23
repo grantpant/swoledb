@@ -51,6 +51,8 @@ class AddExerciseForm extends React.Component {
     }
   };
 
+  initialState = { ...this.state };
+
   onNameChange = (e) => {
     const name = e.target.value;
     this.setState(() => ({ name }));
@@ -145,20 +147,23 @@ class AddExerciseForm extends React.Component {
       mutation: createExercise,
       variables
     })
-      .then((result) => console.log(result.data.createExercise))
-      .catch((err) => console.warn(err));
+    .then((result) => {
+      console.log(result.data.createExercise);
+      this.setState(() => this.initialState);
+    })
+    .catch((err) => console.warn(err));
   };
 
   render() {
     return (
       <form className="container" onSubmit={this.onSubmit}>
-        <fieldset>
-          <div className="fieldset-header">
+        <fieldset className="fieldset">
+          <div className="fieldset__header">
             <h4>Exercise Name</h4>
           </div>
-          <div className="fieldset-body name-fieldset-body">
+          <div className="fieldset__exercise-name-body">
             <input
-              className="name-fieldset-body__input"
+              className="fieldset__exercise-name-body__input"
               type="text"
               name="exercise-name"
               autoFocus

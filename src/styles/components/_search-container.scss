@@ -1,0 +1,8 @@
+.search-container {
+  display: flex;
+}
+
+.search-container__filter {
+  max-width: 25rem;
+  margin-right: $xl-size;
+}

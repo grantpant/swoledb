@@ -106,7 +106,7 @@ class ExerciseList extends Component {
         </div>
         <Query query={EXERCISE_QUERY} variables={{ filter }}>
           {({ loading, error, data }) => {
-            if (loading) return <div>Fetching..</div>
+            if (loading) return <div>Fetching...</div>
             if (error) return <div>Something happened...</div>
 
             return (

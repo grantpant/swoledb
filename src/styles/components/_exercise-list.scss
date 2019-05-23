@@ -3,3 +3,12 @@
     color: $off-white;
   }
 }
+
+.exercise-list__header {
+  background: $gray;
+  padding: $s-size;
+}
+
+.exercise-list__items {
+  padding: $s-size;
+}

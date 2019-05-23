@@ -10,11 +10,11 @@ class TrainingPhasesFieldset extends Component {
   };
   render() {
     return (
-      <fieldset id="trainingPhases" className="checkbox-set">
-        <div className="fieldset-header">
+      <fieldset className="fieldset">
+        <div className="fieldset__header">
           <h4>Training Phases</h4>
         </div>
-        <div className="fieldset-body">
+        <div className="fieldset__body">
           {trainingPhases.map((trainingPhase, i) => (
             <TrainingPhaseInput
               key={i}
