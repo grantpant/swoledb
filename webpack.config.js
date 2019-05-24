@@ -13,7 +13,7 @@ module.exports = (env) => {
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: 'styles.css'  }),
-      new Dotenv({ path: !isProduction ? './config/dev.env' : null })
+      new Dotenv({ path: !isProduction ? './config/dev.env' : '' })
     ],
     module: {
       rules: [
