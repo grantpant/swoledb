@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env) => {
   const isProduction = env === 'production';
@@ -11,44 +12,40 @@ module.exports = (env) => {
       filename: 'bundle.js'
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: 'styles.css'
-      })
+      new MiniCssExtractPlugin({ filename: 'styles.css'  }),
+      new Dotenv({ path: isProduction ? './config/prod.env' : './config/dev.env' })
     ],
     module: {
-      rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react'
-            ],
-            plugins: ['@babel/plugin-proposal-class-properties']
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-react'
+              ],
+              plugins: ['@babel/plugin-proposal-class-properties']
+            }
           }
+        },
+        {
+          test: /\.s?css$/,
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: 'css-loader',
+              options: { sourceMap: true }
+            },
+            {
+              loader: 'sass-loader',
+              options: { sourceMap: true }
+            }
+          ]
         }
-      }, {
-        test: /\.s?css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      }]
+      ]
     },
     devServer: {
       contentBase: path.join(__dirname, 'public'),

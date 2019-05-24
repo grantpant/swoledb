@@ -7,7 +7,7 @@ import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
 export const client = new ApolloClient({
-  uri: 'https://swoledb-graphql.herokuapp.com/',
+  uri: process.env.GRAPHQL_ENDPOINT,
   request: (operation) => {
     operation.setContext({
       headers: {
