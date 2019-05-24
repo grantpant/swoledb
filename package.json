@@ -7,7 +7,9 @@
     "build:dev": "webpack --mode development",
     "build:prod": "webpack -p --env production",
     "dev": "webpack-dev-server --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm run build:prod"
   },
   "author": "Grant Thompson",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "apollo-boost": "^0.3.1",
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
+    "express": "^4.17.0",
     "graphql": "^14.3.0",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
