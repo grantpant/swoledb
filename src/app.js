@@ -6,10 +6,8 @@ import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
-console.log(process.env.GRAPHQL_ENDPOINT);
-
 export const client = new ApolloClient({
-  uri: 'https://swoledb-graphql.herokuapp.com/',
+  uri: 'process.env.GRAPHQL_ENDPOINT)',
   request: (operation) => {
     operation.setContext({
       headers: {
