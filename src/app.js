@@ -6,6 +6,8 @@ import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
+console.log('source from line 9 in app.js')
+
 export const client = new ApolloClient({
   uri: 'http://localhost:4000',
   request: (operation) => {
