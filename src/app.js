@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import AppRouter from './routers/AppRouter';
+import 'antd/lib/notification/style/index.css';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 

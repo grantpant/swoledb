@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
+import { notification } from 'antd';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
@@ -48,7 +49,8 @@ class AddExerciseForm extends React.Component {
       cones: false,
       agilityLadder: false,
       miniHurdles: false
-    }
+    },
+    buttonDisabled: false
   };
 
   initialState = { ...this.state };
@@ -84,74 +86,82 @@ class AddExerciseForm extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    // Build array of checked trainingPhases
-    const trainingPhases = [];
-    for (let key in this.state.trainingPhases) {
-      if (this.state.trainingPhases[key]) {
-        trainingPhases.push({ name: key });
-      }
-    }
+    if (this.state.name !== '') {
+      this.setState(() => ({ buttonDisabled: true }));
 
-    // Build array of checked workoutTypes
-    const workoutTypes = [];
-    for (let key in this.state.workoutTypes) {
-      if (this.state.workoutTypes[key]) {
-        workoutTypes.push({ name: key });
-      }
-    }
-
-    // Build array for check equipment
-    const equipment = [];
-    for (let key in this.state.equipment) {
-      if (this.state.equipment[key]) {
-        equipment.push({ name: key });
-      }
-    }
-
-    const createExercise = gql`
-      mutation($data: CreateExerciseInput!) {
-        createExercise(
-          data: $data
-        ) {
-          name
-          bodySection
-          primaryMover
-          movementType
-          trainingPhases {
-            name
-          }
-          workoutTypes {
-            name
-          }
-          equipment {
-            name
-          }
+      // Build array of checked trainingPhases
+      const trainingPhases = [];
+      for (let key in this.state.trainingPhases) {
+        if (this.state.trainingPhases[key]) {
+          trainingPhases.push({ name: key });
         }
       }
-    `;
 
-    const { name, bodySection, primaryMover, movementType } = this.state;
-    const variables = {
-      data: {
-        name,
-        bodySection: bodySection === '' ? null : bodySection,
-        primaryMover: primaryMover === '' ? null : primaryMover,
-        movementType: movementType === '' ? null : movementType,
-        trainingPhases: trainingPhases === [] ? null : trainingPhases,
-        workoutTypes: workoutTypes === [] ? null : workoutTypes,
-        equipment: equipment === [] ? null : equipment
+      // Build array of checked workoutTypes
+      const workoutTypes = [];
+      for (let key in this.state.workoutTypes) {
+        if (this.state.workoutTypes[key]) {
+          workoutTypes.push({ name: key });
+        }
       }
-    };
 
-    client.mutate({
-      mutation: createExercise,
-      variables
-    })
-    .then((result) => {
-      console.log(result.data.createExercise);
-      this.setState(() => this.initialState);
-    })
-    .catch((err) => console.warn(err));
+      // Build array for check equipment
+      const equipment = [];
+      for (let key in this.state.equipment) {
+        if (this.state.equipment[key]) {
+          equipment.push({ name: key });
+        }
+      }
+
+      const createExercise = gql`
+        mutation($data: CreateExerciseInput!) {
+          createExercise(
+            data: $data
+          ) {
+            name
+            bodySection
+            primaryMover
+            movementType
+            trainingPhases {
+              name
+            }
+            workoutTypes {
+              name
+            }
+            equipment {
+              name
+            }
+          }
+        }
+      `;
+
+      const { name, bodySection, primaryMover, movementType } = this.state;
+      const variables = {
+        data: {
+          name,
+          bodySection: bodySection === '' ? null : bodySection,
+          primaryMover: primaryMover === '' ? null : primaryMover,
+          movementType: movementType === '' ? null : movementType,
+          trainingPhases: trainingPhases === [] ? null : trainingPhases,
+          workoutTypes: workoutTypes === [] ? null : workoutTypes,
+          equipment: equipment === [] ? null : equipment
+        }
+      };
+
+      client.mutate({
+        mutation: createExercise,
+        variables
+      })
+      .then((result) => {
+        console.log(result.data.createExercise);
+        notification.success({
+          message: 'Exercise added!',
+          placement: 'bottomRight'
+        });
+        this.setState(() => this.initialState);
+      })
+      .catch((err) => console.warn(err));
+    }
   };
 
   render() {
@@ -171,7 +181,7 @@ class AddExerciseForm extends React.Component {
               onChange={this.onNameChange}
               value={this.state.name}
             />
-            <button className="button" type="submit">Add Exercise</button>
+            <button className="button" type="submit" disabled={this.state.buttonDisabled}>Add Exercise</button>
           </div>
         </fieldset>
         <br />
