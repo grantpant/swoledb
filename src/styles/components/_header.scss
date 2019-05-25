@@ -7,13 +7,23 @@
 
 .header__container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
 .header__title {
-  font-size: $l-size;
+  display: flex;
   margin: 0;
+}
+
+.header__title__icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.header__title__text {
+  font-size: $l-size;
 }
 
 .header__nav__link {
@@ -24,4 +34,5 @@
 
 .is-active {
   font-weight: bold;
+  text-decoration: underline;
 }
