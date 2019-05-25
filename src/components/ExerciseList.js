@@ -104,7 +104,11 @@ class ExerciseList extends Component {
         <div className="exercise-list__header">
           <h1>Exercise List</h1>
         </div>
-        <Query query={EXERCISE_QUERY} variables={{ filter }}>
+        <Query
+          query={EXERCISE_QUERY}
+          variables={{ filter }}
+          fetchPolicy="cache-and-network"
+        >
           {({ loading, error, data }) => {
             if (loading) return <div>Fetching...</div>
             if (error) return <div>Something happened...</div>
