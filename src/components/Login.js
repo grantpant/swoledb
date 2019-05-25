@@ -11,7 +11,6 @@ class Login extends Component {
   render() {
     return (
       <div className="login-form">
-        <p>This will be the Login component.</p>
         <form onSubmit={this.login}>
           <input type="text" />
           <input type="password" />
