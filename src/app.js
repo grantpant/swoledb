@@ -18,6 +18,8 @@ export const client = new ApolloClient({
   connectToDevTools: true
 });
 
+window.__APOLLO_CLIENT__ = client;
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <AppRouter />
