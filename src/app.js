@@ -17,6 +17,7 @@ export const client = new ApolloClient({
   }
 });
 
+// For Chrome Apollo Devtools
 window.__APOLLO_CLIENT__ = client;
 
 ReactDOM.render(
