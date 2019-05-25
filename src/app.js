@@ -6,8 +6,10 @@ import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
+console.log('GRAPHQL_ENDPOINT = ', process.env.GRAPHQL_ENDPOINT);
+
 export const client = new ApolloClient({
-  uri: 'process.env.GRAPHQL_ENDPOINT)',
+  uri: process.env.GRAPHQL_ENDPOINT,
   request: (operation) => {
     operation.setContext({
       headers: {

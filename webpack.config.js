@@ -1,11 +1,13 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
 
 
 module.exports = (env) => {
   const isProduction = env === 'production';
-  const dotenvConfig = isProduction ? {} : { path: './config/dev.env' };
+  const webpackEnv = new webpack.EnvironmentPlugin({
+    GRAPHQL_ENDPOINT: 'http://localhost:4000'
+  });
 
   return {
     entry: './src/app.js',
@@ -15,7 +17,7 @@ module.exports = (env) => {
     },
     plugins: [
       new MiniCssExtractPlugin({ filename: 'styles.css'  }),
-      new Dotenv(dotenvConfig)
+      webpackEnv
     ],
     module: {
       rules: [
