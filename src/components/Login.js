@@ -1,24 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { ApolloConsumer } from 'react-apollo';
+import LoginForm from './LoginForm';
 
-class Login extends Component {
-  state = {
-    username: '',
-    password: ''
-  };
-  login = (e) => {
-    e.preventDefault();
-  };
-  render() {
-    return (
-      <div className="login-form">
-        <form onSubmit={this.login}>
-          <input type="text" />
-          <input type="password" />
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    );
-  }
-}
+const Login = () => (
+  <ApolloConsumer>
+    {(client) => (
+      <LoginForm client={client} />
+    )}
+  </ApolloConsumer>
+);
 
 export default Login;
