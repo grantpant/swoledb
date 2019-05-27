@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { ApolloConsumer } from 'react-apollo';
 import ExerciseListFilter from './ExerciseListFilter';
 import ExerciseList from './ExerciseList';
 import { checkboxHandler } from '../utils/helpers';
@@ -106,7 +107,15 @@ class ExerciseSearch extends Component{
             onEquipmentChange={this.onEquipmentChange}
           />
         </div>
-        <ExerciseList filters={this.state} />
+        <ApolloConsumer>
+          {(client) => (
+            <ExerciseList
+              filters={this.state}
+              client={client}
+            />
+          )}
+        </ApolloConsumer>
+
       </div>
     );
   }

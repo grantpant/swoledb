@@ -3,6 +3,18 @@ import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
 
 class ExerciseList extends Component {
+  componentDidMount() {
+    // This is how to read data from Apollo store cache
+    const isLoggedIn = gql`
+      query {
+        isLoggedIn @client
+      }
+    `;
+
+    this.props.client.query({ query: isLoggedIn })
+    .then((res) => console.log(res))
+    .catch((err) => console.error(err.message));
+  }
   render() {
     const EXERCISE_QUERY = gql`
       query($filter: ExerciseWhereInput) {

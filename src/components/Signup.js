@@ -1,13 +1,13 @@
 import React from 'react';
 import { ApolloConsumer } from 'react-apollo';
-import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
-const Login = () => (
+const Signup = () => (
   <ApolloConsumer>
     {(client) => (
-      <LoginForm client={client} />
+      <SignupForm client={client} />
     )}
   </ApolloConsumer>
 );
 
-export default Login;
+export default Signup;
