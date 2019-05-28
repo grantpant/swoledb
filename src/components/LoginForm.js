@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
+import { client } from '../app';
+import { history } from '../routers/AppRouter';
 
 class LoginForm extends Component {
   state = {
@@ -39,7 +41,7 @@ class LoginForm extends Component {
     };
 
     // Fire off mutation
-    this.props.client.mutate({
+    client.mutate({
       mutation: loginUser,
       variables
     })
@@ -47,10 +49,10 @@ class LoginForm extends Component {
       // Put the jwt into local storage
       localStorage.setItem('jwt', res.data.login.token);
       // Set isLoggedIn to true in Apollo cache
-      this.props.client.writeData({
+      client.writeData({
         data: { isLoggedIn: true }
       });
-      this.props.push('/dashboard');
+      history.push('/dashboard');
     })
     .catch((err) => console.error(err));
   };

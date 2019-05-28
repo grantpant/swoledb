@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
+import { client } from '../app';
+import { history } from '../routers/AppRouter';
 
 class SignupForm extends Component {
   state = {
@@ -47,16 +49,16 @@ class SignupForm extends Component {
     };
 
     // Fire off createUser mutation
-    this.props.client.mutate({
+    client.mutate({
       mutation: signupUser,
       variables
     })
     .then((res) => {
       localStorage.setItem('jwt', res.data.createUser.token);
-      this.props.client.writeData({
+      client.writeData({
         data: { isLoggedIn: true }
       });
-      this.props.push('/dashboard');
+      history.push('/dashboard');
     })
     .catch((err) => console.error(err));
   };

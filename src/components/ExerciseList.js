@@ -1,20 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { gql } from 'apollo-boost';
+import { client } from '../app';
 
 class ExerciseList extends Component {
-  componentDidMount() {
-    // This is how to read data from Apollo store cache
-    const isLoggedIn = gql`
-      query {
-        isLoggedIn @client
-      }
-    `;
+  // componentDidMount() {
+  //   // This is how to read data from Apollo store cache
+  //   const isLoggedIn = gql`
+  //     query {
+  //       isLoggedIn @client
+  //     }
+  //   `;
 
-    this.props.client.query({ query: isLoggedIn })
-    .then((res) => console.log(res))
-    .catch((err) => console.error(err.message));
-  }
+  //   client.query({ query: isLoggedIn })
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.error(err.message));
+  // }
   render() {
     const EXERCISE_QUERY = gql`
       query($filter: ExerciseWhereInput) {
@@ -109,7 +110,7 @@ class ExerciseList extends Component {
     };
 
     const filter = consolidateFilters(this.props.filters);
-    console.log(JSON.stringify(filter, null, 2))
+    // console.log(JSON.stringify(filter, null, 2))
 
     return (
       <div className="exercise-list">
