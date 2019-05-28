@@ -1,58 +1,52 @@
 import React, { Component } from 'react';
 import { gql } from 'apollo-boost';
 
-class SignupForm extends Component {
+class LoginForm extends Component {
   state = {
     username: '',
-    email: '',
     password: ''
   };
   onUsernameChange = (e) => {
     e.persist();
     this.setState(() => ({ username: e.target.value }));
   };
-  onEmailChange = (e) => {
-    e.persist();
-    this.setState(() => ({ email: e.target.value }));
-  };
   onPasswordChange = (e) => {
     e.persist();
     this.setState(() => ({ password: e.target.value }));
   };
-  signup = (e) => {
+  login = (e) => {
     e.preventDefault();
 
     // Define GraphQL mutation
-    const signupUser = gql`
-      mutation($data: CreateUserInput!) {
-        createUser(
-          data: $data
-        ) {
+    const loginUser = gql`
+      mutation($data: LoginUserInput!) {
+        login(data: $data) {
           user {
-            username
-            email
-          }
-          token
+          id
+          username
+        }
+        token
         }
       }
     `;
 
-    // Pack up mutation variables nice and neat
+    // Pack up variables
     const variables = {
       data: {
         username: this.state.username,
-        email: this.state.email,
         password: this.state.password
       }
     };
 
-    // Fire off createUser mutation
+    // Fire off mutation
     this.props.client.mutate({
-      mutation: signupUser,
+      mutation: loginUser,
       variables
     })
     .then((res) => {
-      localStorage.setItem('jwt', res.data.createUser.token);
+      // Put the jwt into local storage
+      localStorage.setItem('jwt', res.data.login.token);
+      // Set isLoggedIn to true in Apollo cache
       this.props.client.writeData({
         data: { isLoggedIn: true }
       });
@@ -62,17 +56,12 @@ class SignupForm extends Component {
   };
   render() {
     return (
-      <div className="signup-form">
-        <h3>Sign Up</h3>
-        <form onSubmit={this.signup}>
+      <div className="login-form">
+        <h3>Login</h3>
+        <form onSubmit={this.login}>
           <label>
             username:{' '}
             <input type="text" onChange={this.onUsernameChange} />
-          </label>
-          <br />
-          <label>
-            email:{' '}
-            <input type="text" onChange={this.onEmailChange} />
           </label>
           <br />
           <label>
@@ -80,11 +69,11 @@ class SignupForm extends Component {
             <input type="password" onChange={this.onPasswordChange} />
           </label>
           <br />
-          <input type="submit" value="Sign up" />
+          <input type="submit" value="Login" />
         </form>
       </div>
     );
   }
 }
 
-export default SignupForm;
+export default LoginForm;
