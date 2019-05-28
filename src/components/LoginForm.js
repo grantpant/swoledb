@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
+import { LOG_IN_USER } from '../queries';
 import { client } from '../app';
 import { history } from '../routers/AppRouter';
 
@@ -19,19 +19,6 @@ class LoginForm extends Component {
   login = (e) => {
     e.preventDefault();
 
-    // Define GraphQL mutation
-    const loginUser = gql`
-      mutation($data: LoginUserInput!) {
-        login(data: $data) {
-          user {
-          id
-          username
-        }
-        token
-        }
-      }
-    `;
-
     // Pack up variables
     const variables = {
       data: {
@@ -42,7 +29,7 @@ class LoginForm extends Component {
 
     // Fire off mutation
     client.mutate({
-      mutation: loginUser,
+      mutation: LOG_IN_USER,
       variables
     })
     .then((res) => {
@@ -52,6 +39,7 @@ class LoginForm extends Component {
       client.writeData({
         data: { isLoggedIn: true }
       });
+      // Send user to the dashboard
       history.push('/dashboard');
     })
     .catch((err) => console.error(err));

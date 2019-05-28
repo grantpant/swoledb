@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { gql } from 'apollo-boost';
 import { client } from '../app';
+import { SIGN_UP_USER } from '../queries';
 import { history } from '../routers/AppRouter';
 
 class SignupForm extends Component {
@@ -24,21 +24,6 @@ class SignupForm extends Component {
   signup = (e) => {
     e.preventDefault();
 
-    // Define GraphQL mutation
-    const signupUser = gql`
-      mutation($data: CreateUserInput!) {
-        createUser(
-          data: $data
-        ) {
-          user {
-            username
-            email
-          }
-          token
-        }
-      }
-    `;
-
     // Pack up mutation variables nice and neat
     const variables = {
       data: {
@@ -50,7 +35,7 @@ class SignupForm extends Component {
 
     // Fire off createUser mutation
     client.mutate({
-      mutation: signupUser,
+      mutation: SIGN_UP_USER,
       variables
     })
     .then((res) => {

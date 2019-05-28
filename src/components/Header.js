@@ -1,14 +1,8 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { GET_LOGGED_IN_STATUS } from '../queries';
 import { history } from '../routers/AppRouter';
-
-const GET_LOGGED_IN_STATUS = gql`
-  query {
-    isLoggedIn @client
-  }
-`;
 
 const Header = () => (
   <header className="header">
@@ -28,7 +22,7 @@ const Header = () => (
             return (
               data.isLoggedIn && (
                 <Fragment>
-                  <NavLink exact to="/" className="header__nav__link" activeClassName="is-active">Add Exercise</NavLink>
+                  <NavLink exact to="/dashboard" className="header__nav__link" activeClassName="is-active">Add Exercise</NavLink>
                   <NavLink to="/search" className="header__nav__link" activeClassName="is-active">Search Exercises</NavLink>
                   <button
                     onClick={() => {

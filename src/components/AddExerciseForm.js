@@ -1,5 +1,4 @@
 import React from 'react';
-import { gql } from 'apollo-boost';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
@@ -8,6 +7,7 @@ import WorkoutTypesFieldset from './fieldsets/WorkoutTypesFieldset';
 import EquipmentFieldset from './fieldsets/EquipmentFieldset';
 import { client } from '../app';
 import { checkboxHandler } from '../utils/helpers';
+import { CREATE_EXERCISE } from '../queries';
 
 class AddExerciseForm extends React.Component {
   state = {
@@ -108,28 +108,6 @@ class AddExerciseForm extends React.Component {
       }
     }
 
-    const createExercise = gql`
-      mutation($data: CreateExerciseInput!) {
-        createExercise(
-          data: $data
-        ) {
-          name
-          bodySection
-          primaryMover
-          movementType
-          trainingPhases {
-            name
-          }
-          workoutTypes {
-            name
-          }
-          equipment {
-            name
-          }
-        }
-      }
-    `;
-
     const { name, bodySection, primaryMover, movementType } = this.state;
     const variables = {
       data: {
@@ -144,7 +122,7 @@ class AddExerciseForm extends React.Component {
     };
 
     client.mutate({
-      mutation: createExercise,
+      mutation: CREATE_EXERCISE,
       variables
     })
     .then((result) => {

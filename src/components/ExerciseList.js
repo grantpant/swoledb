@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
 import { client } from '../app';
+import { GET_EXERCISES } from '../queries';
 
 class ExerciseList extends Component {
   // componentDidMount() {
@@ -17,20 +17,6 @@ class ExerciseList extends Component {
   //   .catch((err) => console.error(err.message));
   // }
   render() {
-    const EXERCISE_QUERY = gql`
-      query($filter: ExerciseWhereInput) {
-        exercises(where: $filter) {
-          name
-          bodySection
-          primaryMover
-          movementType
-          trainingPhases { name }
-          workoutTypes { name }
-          equipment { name }
-        }
-      }
-    `;
-
     // This function is processing our data from the search filter
     // into a format we can pass as the $filter variable to the GraphQL
     // query to filter our search.
@@ -118,7 +104,7 @@ class ExerciseList extends Component {
           <h1>Exercise List</h1>
         </div>
         <Query
-          query={EXERCISE_QUERY}
+          query={GET_EXERCISES}
           variables={{ filter }}
           fetchPolicy="cache-and-network"
         >
