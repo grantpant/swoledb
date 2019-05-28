@@ -22,8 +22,8 @@ const Header = () => (
             return (
               data.isLoggedIn && (
                 <Fragment>
-                  <NavLink exact to="/dashboard" className="header__nav__link" activeClassName="is-active">Add Exercise</NavLink>
-                  <NavLink to="/search" className="header__nav__link" activeClassName="is-active">Search Exercises</NavLink>
+                  <NavLink exact to="/add-exercise" className="header__nav__link" activeClassName="is-active">Add Exercise</NavLink>
+                  <NavLink to="/dashboard" className="header__nav__link" activeClassName="is-active">Search Exercises</NavLink>
                   <button
                     onClick={() => {
                       client.writeData({
