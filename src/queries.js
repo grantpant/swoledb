@@ -50,6 +50,10 @@ export const CREATE_EXERCISE = gql`
       equipment {
         name
       }
+      owner {
+        id
+        username
+      }
     }
   }
 `;
