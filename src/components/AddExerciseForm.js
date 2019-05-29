@@ -1,6 +1,4 @@
-import React from 'react';
-import { gql } from 'apollo-boost';
-import { notification } from 'antd';
+import React, { Component } from 'react';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
@@ -9,8 +7,9 @@ import WorkoutTypesFieldset from './fieldsets/WorkoutTypesFieldset';
 import EquipmentFieldset from './fieldsets/EquipmentFieldset';
 import { client } from '../app';
 import { checkboxHandler } from '../utils/helpers';
+import { CREATE_EXERCISE } from '../queries';
 
-class AddExerciseForm extends React.Component {
+class AddExerciseForm extends Component {
   state = {
     name: '',
     bodySection: '',
@@ -112,56 +111,30 @@ class AddExerciseForm extends React.Component {
           equipment.push({ name: key });
         }
       }
-
-      const createExercise = gql`
-        mutation($data: CreateExerciseInput!) {
-          createExercise(
-            data: $data
-          ) {
-            name
-            bodySection
-            primaryMover
-            movementType
-            trainingPhases {
-              name
-            }
-            workoutTypes {
-              name
-            }
-            equipment {
-              name
-            }
-          }
-        }
-      `;
-
-      const { name, bodySection, primaryMover, movementType } = this.state;
-      const variables = {
-        data: {
-          name,
-          bodySection: bodySection === '' ? null : bodySection,
-          primaryMover: primaryMover === '' ? null : primaryMover,
-          movementType: movementType === '' ? null : movementType,
-          trainingPhases: trainingPhases === [] ? null : trainingPhases,
-          workoutTypes: workoutTypes === [] ? null : workoutTypes,
-          equipment: equipment === [] ? null : equipment
-        }
-      };
-
-      client.mutate({
-        mutation: createExercise,
-        variables
-      })
-      .then((result) => {
-        console.log(result.data.createExercise);
-        notification.success({
-          message: 'Exercise added!',
-          placement: 'bottomRight'
-        });
-        this.setState(() => this.initialState);
-      })
-      .catch((err) => console.warn(err));
     }
+
+    const { name, bodySection, primaryMover, movementType } = this.state;
+    const variables = {
+      data: {
+        name,
+        bodySection: bodySection === '' ? null : bodySection,
+        primaryMover: primaryMover === '' ? null : primaryMover,
+        movementType: movementType === '' ? null : movementType,
+        trainingPhases: trainingPhases === [] ? null : trainingPhases,
+        workoutTypes: workoutTypes === [] ? null : workoutTypes,
+        equipment: equipment === [] ? null : equipment
+      }
+    };
+
+    client.mutate({
+      mutation: CREATE_EXERCISE,
+      variables
+    })
+    .then((result) => {
+      console.log(result.data.createExercise);
+      this.setState(() => this.initialState);
+    })
+    .catch((err) => console.warn(err));
   };
 
   render() {

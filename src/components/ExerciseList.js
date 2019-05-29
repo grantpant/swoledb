@@ -1,23 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import { client } from '../app';
+import { GET_EXERCISES } from '../queries';
 
 class ExerciseList extends Component {
-  render() {
-    const EXERCISE_QUERY = gql`
-      query($filter: ExerciseWhereInput) {
-        exercises(where: $filter) {
-          name
-          bodySection
-          primaryMover
-          movementType
-          trainingPhases { name }
-          workoutTypes { name }
-          equipment { name }
-        }
-      }
-    `;
+  // componentDidMount() {
+  //   // This is how to read data from Apollo store cache
+  //   const isLoggedIn = gql`
+  //     query {
+  //       isLoggedIn @client
+  //     }
+  //   `;
 
+  //   client.query({ query: isLoggedIn })
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.error(err.message));
+  // }
+  render() {
     // This function is processing our data from the search filter
     // into a format we can pass as the $filter variable to the GraphQL
     // query to filter our search.
@@ -97,7 +96,7 @@ class ExerciseList extends Component {
     };
 
     const filter = consolidateFilters(this.props.filters);
-    console.log(JSON.stringify(filter, null, 2))
+    // console.log(JSON.stringify(filter, null, 2))
 
     return (
       <div className="exercise-list">
@@ -105,7 +104,7 @@ class ExerciseList extends Component {
           <h1>Exercise List</h1>
         </div>
         <Query
-          query={EXERCISE_QUERY}
+          query={GET_EXERCISES}
           variables={{ filter }}
           fetchPolicy="cache-and-network"
         >

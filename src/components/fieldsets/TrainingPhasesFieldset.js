@@ -15,14 +15,20 @@ class TrainingPhasesFieldset extends Component {
           <h4>Training Phases</h4>
         </div>
         <div className="fieldset__body">
-          {trainingPhases.map((trainingPhase, i) => (
-            <TrainingPhaseInput
-              key={i}
-              trainingPhase={trainingPhase}
-              checked={this.props.state[trainingPhase]}
-              onChange={this.onChange}
-            />
-          ))}
+          {trainingPhases.map((trainingPhase, i) => {
+            // Provide lowercase to dynamically-referenced
+            // value in state from AddExerciseForm for the "checked" prop.
+            const checkedValue = trainingPhase.toLowerCase();
+
+            return (
+              <TrainingPhaseInput
+                key={i}
+                trainingPhase={trainingPhase}
+                checked={this.props.state[checkedValue]}
+                onChange={this.onChange}
+              />
+            );
+          })}
         </div>
       </fieldset>
     );

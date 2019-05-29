@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ExerciseListFilter from './ExerciseListFilter';
 import ExerciseList from './ExerciseList';
 import { checkboxHandler } from '../utils/helpers';
