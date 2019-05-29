@@ -1,28 +1,8 @@
 import React from 'react';
 import EquipmentPieceInput from './inputs/EquipmentPieceInput';
+import { toCamelCase } from '../../utils/helpers';
 
 const equipment = ['Barbell', 'Barbell rack', 'Dumbbells', 'Bench', 'Kettle bell', 'Smith rack', 'Cable', 'Dip station', 'Roman chair', 'Pull-up bar', 'TRX straps', 'Step', 'Box', 'Band', 'Medicine ball', 'Swiss ball', 'BOSU ball', 'Foam roller', 'Cones', 'Agility ladder', 'Mini hurdles'];
-
-const toCamelCase = (equipmentPiece) => {
-  // It hasn't been lower-cased yet if coming from the rendered list.
-  equipmentPiece = equipmentPiece.toLowerCase();
-  // Check if the equipmentPiece has a space or a hyphen in it
-  const hasSpace = new RegExp(/\s/, 'g').test(equipmentPiece);
-  const hasHyphen = new RegExp(/(-[\w])/, 'g').test(equipmentPiece);
-
-  if (hasSpace) {
-    equipmentPiece = equipmentPiece.replace(/(\s[\w])/g, (match) => (
-      match[1].toUpperCase()
-    ));
-  }
-  if (hasHyphen) {
-    equipmentPiece = equipmentPiece.replace(/(-[\w])/g, (match) => (
-      match[1].toUpperCase()
-    ));
-  }
-
-  return equipmentPiece;
-};
 
 class EquipmentFieldset extends React.Component {
   onChange = (e) => {

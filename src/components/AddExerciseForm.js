@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
@@ -9,7 +9,7 @@ import { client } from '../app';
 import { checkboxHandler } from '../utils/helpers';
 import { CREATE_EXERCISE } from '../queries';
 
-class AddExerciseForm extends React.Component {
+class AddExerciseForm extends Component {
   state = {
     name: '',
     bodySection: '',

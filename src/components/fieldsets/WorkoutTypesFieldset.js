@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 import WorkoutTypeInput from './inputs/WorkoutTypeInput';
+import { toCamelCase } from '../../utils/helpers';
 
 const workoutTypes = ['Warm-up', 'Resistence', 'H.I.I.T.'];
-
-const toCamelCase = (workoutType) => {
-  // It hasn't been "toLowerCased" yet if coming from the render method
-  workoutType = workoutType.toLowerCase();
-  const hasHyphen = new RegExp(/(-[\w])/, 'g').test(workoutType);
-
-  if (hasHyphen) {
-    workoutType = workoutType.replace(/(-[\w])/g, (match) => (
-      match[1].toUpperCase()
-    ));
-  }
-  if (workoutType === 'h.i.i.t.') {
-    workoutType = workoutType.replace(/\./g,'');
-  }
-
-  return workoutType;
-};
 
 class WorkoutTypesFieldset extends Component {
   onChange = (e) => {
