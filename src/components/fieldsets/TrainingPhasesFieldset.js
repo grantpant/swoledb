@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TrainingPhaseInput from './inputs/TrainingPhaseInput';
 
-const trainingPhases = ['Stability', 'Strength', 'Hypertrophy', 'Power'];
+export const trainingPhases = ['Stability', 'Strength', 'Hypertrophy', 'Power'];
 
 class TrainingPhasesFieldset extends Component {
   onChange = (e) => {

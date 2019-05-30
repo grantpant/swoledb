@@ -1,66 +1,52 @@
 import React, { Component } from 'react';
+import { bodySections } from './fieldsets/BodySectionsFieldset';
+import { primaryMovers } from './fieldsets/PrimaryMoversFieldset';
+import { movementTypes } from './fieldsets/MovementTypesFieldset';
+import { trainingPhases } from './fieldsets/TrainingPhasesFieldset';
+import { workoutTypes } from './fieldsets/WorkoutTypesFieldset';
+import { equipment } from './fieldsets/EquipmentFieldset';
 import ExerciseListFilter from './ExerciseListFilter';
 import ExerciseList from './ExerciseList';
-import { checkboxHandler } from '../utils/helpers';
+import { checkboxHandler, toCamelCase } from '../utils/helpers';
 
 class ExerciseSearch extends Component{
   state = {
-    bodySections: {
-      upper: false,
-      lower: false,
-      core: false,
-      full: false
-    },
-    primaryMovers: {
-      quads: false,
-      hamstrings: false,
-      glutes: false,
-      calves: false,
-      chest: false,
-      back: false,
-      shoulders: false,
-      biceps: false,
-      triceps: false,
-      core: false
-    },
-    movementTypes: {
-      push: false,
-      pull: false
-    },
-    trainingPhases: {
-      stability: false,
-      strength: false,
-      hypertrophy: false,
-      power: false
-    },
-    workoutTypes: {
-      warmUp: false,
-      resistence: false,
-      hiit: false
-    },
-    equipment: {
-      barbell: false,
-      barbellRack: false,
-      dumbbells: false,
-      bench: false,
-      kettleBell: false,
-      smithRack: false,
-      cable: false,
-      dipStation: false,
-      romanChair: false,
-      pullUpBar: false,
-      trxStraps: false,
-      step: false,
-      box: false,
-      band: false,
-      medicineBall: false,
-      swissBall: false,
-      bosuBall: false,
-      foamRoller: false,
-      cones: false,
-      agilityLadder: false,
-      miniHurdles: false
-    }
+    bodySections: bodySections.reduce(
+      (sections, section) => ({
+        ...sections,
+        [section.toLowerCase()]: false
+      }), {}
+    ),
+    primaryMovers: primaryMovers.reduce(
+      (movers, mover) => ({
+        ...movers,
+        [mover.toLowerCase()]: false
+      }), {}
+    ),
+    movementTypes: movementTypes.reduce(
+      (types, type) => ({
+        ...types,
+        [type.toLowerCase()]: false
+      }), {}
+    ),
+    trainingPhases: trainingPhases.reduce(
+      (phases, phase) => ({
+        ...phases,
+        [phase.toLowerCase()]: false
+      }), {}
+    ),
+    workoutTypes: workoutTypes.reduce(
+      (types, type) => ({
+        ...types,
+        [toCamelCase(type)]: false
+      }), {}
+    ),
+    equipment: equipment.reduce(
+      (equipment, piece) => ({
+        ...equipment,
+        [toCamelCase(piece)]: false
+      }), {}
+    )
   }
   onBodySectionsChange = (bodySection) => {
     this.setState((prevState) => (

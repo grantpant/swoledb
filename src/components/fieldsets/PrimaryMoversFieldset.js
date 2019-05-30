@@ -1,19 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PrimaryMoverInput from './inputs/PrimaryMoverInput';
+import { checkedValue } from '../../utils/helpers';
 
-const primaryMovers = ['Quads', 'Hamstrings', 'Glutes', 'Calves', 'Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Core'];
+export const primaryMovers = ['Quads', 'Hamstrings', 'Glutes', 'Calves', 'Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Core'];
 
 class PrimaryMoversFieldset extends Component {
   onChange = (e) => {
     const primaryMover = e.target.value;
     this.props.onChange(primaryMover);
-  };
-  checkedValue = (mover) => {
-    return this.props.inputType === 'radio'
-      ? this.props.state === mover.toLowerCase()
-      : this.props.inputType === 'checkbox'
-      ? this.props.state[mover]
-      : null;
   };
   render() {
     return (
@@ -27,7 +21,7 @@ class PrimaryMoversFieldset extends Component {
               key={i}
               type={this.props.inputType}
               mover={mover}
-              checked={this.checkedValue.call(this, mover)}
+              checked={checkedValue(this.props, mover)}
               onChange={this.onChange}
             />
           ))}

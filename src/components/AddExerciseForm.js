@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
-import TrainingPhasesFieldset from './fieldsets/TrainingPhasesFieldset';
-import WorkoutTypesFieldset from './fieldsets/WorkoutTypesFieldset';
-import EquipmentFieldset from './fieldsets/EquipmentFieldset';
+import TrainingPhasesFieldset, { trainingPhases } from './fieldsets/TrainingPhasesFieldset';
+import WorkoutTypesFieldset, { workoutTypes } from './fieldsets/WorkoutTypesFieldset';
+import EquipmentFieldset, { equipment } from './fieldsets/EquipmentFieldset';
 import { client } from '../app';
-import { checkboxHandler } from '../utils/helpers';
+import { checkboxHandler, toCamelCase } from '../utils/helpers';
 import { CREATE_EXERCISE } from '../queries';
 
 class AddExerciseForm extends Component {
@@ -15,40 +15,24 @@ class AddExerciseForm extends Component {
     bodySection: '',
     primaryMover: '',
     movementType: '',
-    trainingPhases: {
-      stability: false,
-      strength: false,
-      hypertrophy: false,
-      power: false
-    },
-    workoutTypes: {
-      warmUp: false,
-      resistence: false,
-      hiit: false
-    },
-    equipment: {
-      barbell: false,
-      barbellRack: false,
-      dumbbells: false,
-      bench: false,
-      kettleBell: false,
-      smithRack: false,
-      cable: false,
-      dipStation: false,
-      romanChair: false,
-      pullUpBar: false,
-      trxStraps: false,
-      step: false,
-      box: false,
-      band: false,
-      medicineBall: false,
-      swissBall: false,
-      bosuBall: false,
-      foamRoller: false,
-      cones: false,
-      agilityLadder: false,
-      miniHurdles: false
-    },
+    trainingPhases: trainingPhases.reduce(
+      (phases, phase) => ({
+        ...phases,
+        [phase.toLowerCase()]: false
+      }), {}
+    ),
+    workoutTypes: workoutTypes.reduce(
+      (types, type) => ({
+        ...types,
+        [toCamelCase(type)]: false
+      }), {}
+    ),
+    equipment: equipment.reduce(
+      (equipment, piece) => ({
+        ...equipment,
+        [toCamelCase(piece)]: false
+      }), {}
+    ),
     buttonDisabled: false
   };
 

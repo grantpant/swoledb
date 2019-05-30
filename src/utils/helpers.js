@@ -37,3 +37,15 @@ export const toCamelCase = (checkboxLabel) => {
 
   return camelizedLabel;
 };
+
+export const checkedValue = (props, inputValue) => (
+  // For radio inputs, return true if string value in AddExerciseForms's
+  // state property matches that of the input value.
+  props.inputType === 'radio'
+    ? props.state === inputValue.toLowerCase()
+    // For checkbox inputs, return a reference to the corresponding property
+    // in component's state that's managing the input's "checked" value.
+    : props.inputType === 'checkbox'
+    ? props.state[inputValue.toLowerCase()]
+    : null
+);

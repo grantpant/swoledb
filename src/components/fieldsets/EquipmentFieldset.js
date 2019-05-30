@@ -2,7 +2,7 @@ import React from 'react';
 import EquipmentPieceInput from './inputs/EquipmentPieceInput';
 import { toCamelCase } from '../../utils/helpers';
 
-const equipment = ['Barbell', 'Barbell rack', 'Dumbbells', 'Bench', 'Kettle bell', 'Smith rack', 'Cable', 'Dip station', 'Roman chair', 'Pull-up bar', 'TRX straps', 'Step', 'Box', 'Band', 'Medicine ball', 'Swiss ball', 'BOSU ball', 'Foam roller', 'Cones', 'Agility ladder', 'Mini hurdles'];
+export const equipment = ['Barbell', 'Barbell rack', 'Dumbbells', 'Bench', 'Kettle bell', 'Smith rack', 'Cable', 'Dip station', 'Roman chair', 'Pull-up bar', 'TRX straps', 'Step', 'Box', 'Band', 'Medicine ball', 'Swiss ball', 'BOSU ball', 'Foam roller', 'Cones', 'Agility ladder', 'Mini hurdles'];
 
 class EquipmentFieldset extends React.Component {
   onChange = (e) => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WorkoutTypeInput from './inputs/WorkoutTypeInput';
 import { toCamelCase } from '../../utils/helpers';
 
-const workoutTypes = ['Warm-up', 'Resistence', 'H.I.I.T.'];
+export const workoutTypes = ['Warm-up', 'Resistence', 'H.I.I.T.'];
 
 class WorkoutTypesFieldset extends Component {
   onChange = (e) => {

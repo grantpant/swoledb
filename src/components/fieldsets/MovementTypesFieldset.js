@@ -1,19 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MovementTypeInput from './inputs/MovementTypeInput';
+import { checkedValue } from '../../utils/helpers';
 
-const movementTypes = ['Push', 'Pull'];
+export const movementTypes = ['Push', 'Pull'];
 
-class MovementTypesFieldset extends React.Component {
+class MovementTypesFieldset extends Component {
   onChange = (e) => {
     const movementType = e.target.value;
     this.props.onChange(movementType);
-  };
-  checkedValue = (moveType) => {
-    return this.props.inputType === 'radio'
-      ? this.props.state === moveType.toLowerCase()
-      : this.props.inputType === 'checkbox'
-      ? this.props.state[moveType]
-      : null;
   };
   render() {
     return (
@@ -27,7 +21,7 @@ class MovementTypesFieldset extends React.Component {
               key={i}
               type={this.props.inputType}
               moveType={moveType}
-              checked={this.checkedValue.call(this, moveType)}
+              checked={checkedValue(this.props, moveType)}
               onChange={this.onChange}
             />
           ))}

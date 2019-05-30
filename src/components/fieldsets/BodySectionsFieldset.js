@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import BodySectionInput from './inputs/BodySectionInput';
+import { checkedValue } from '../../utils/helpers';
 
-const bodySections = ['Upper', 'Lower', 'Core', 'Full'];
+export const bodySections = ['Upper', 'Lower', 'Core', 'Full'];
 
 class BodySectionsFieldset extends Component {
   onChange = (e) => {
     const bodySection = e.target.value;
     this.props.onChange(bodySection);
-  };
-  checkedValue = (section) => {
-    return this.props.inputType === 'radio'
-      ? this.props.state === section.toLowerCase()
-      : this.props.inputType === 'checkbox'
-      ? this.props.state[section]
-      : null;
   };
   render() {
     return (
@@ -27,7 +21,7 @@ class BodySectionsFieldset extends Component {
               key={i}
               type={this.props.inputType}
               section={section}
-              checked={this.checkedValue.call(this, section)}
+              checked={checkedValue(this.props, section)}
               onChange={this.onChange}
             />
           ))}
