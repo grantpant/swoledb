@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { client } from '../app';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
 import TrainingPhasesFieldset, { trainingPhases } from './fieldsets/TrainingPhasesFieldset';
 import WorkoutTypesFieldset, { workoutTypes } from './fieldsets/WorkoutTypesFieldset';
 import EquipmentFieldset, { equipment } from './fieldsets/EquipmentFieldset';
-import { client } from '../app';
 import { checkboxHandler, toCamelCase } from '../utils/helpers';
 import { CREATE_EXERCISE } from '../queries';
 
@@ -69,11 +69,15 @@ class AddExerciseForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
+    // Define arrays for query variable that will be lists
+    const trainingPhases = [];
+    const workoutTypes = [];
+    const equipment = [];
+
     if (this.state.name !== '') {
       this.setState(() => ({ buttonDisabled: true }));
 
       // Build array of checked trainingPhases
-      const trainingPhases = [];
       for (let key in this.state.trainingPhases) {
         if (this.state.trainingPhases[key]) {
           trainingPhases.push({ name: key });
@@ -81,7 +85,6 @@ class AddExerciseForm extends Component {
       }
 
       // Build array of checked workoutTypes
-      const workoutTypes = [];
       for (let key in this.state.workoutTypes) {
         if (this.state.workoutTypes[key]) {
           workoutTypes.push({ name: key });
@@ -89,7 +92,6 @@ class AddExerciseForm extends Component {
       }
 
       // Build array for check equipment
-      const equipment = [];
       for (let key in this.state.equipment) {
         if (this.state.equipment[key]) {
           equipment.push({ name: key });
