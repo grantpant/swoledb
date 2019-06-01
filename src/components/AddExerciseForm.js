@@ -140,7 +140,7 @@ class AddExerciseForm extends Component {
               onChange={this.onNameChange}
               value={this.state.name}
             />
-            <button className="button" type="submit" disabled={this.state.buttonDisabled}>Add Exercise</button>
+            <button className="fieldset__exercise-name-body__button" type="submit" disabled={this.state.buttonDisabled}>Add Exercise</button>
           </div>
         </fieldset>
         <br />

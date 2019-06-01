@@ -17,3 +17,23 @@ h1 {
 button {
   cursor: pointer;
 }
+
+.button {
+  background: $blue;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-bottom: .3rem solid darken($blue, 10%);
+  padding: $xs-size;
+  margin: $xs-size;
+  border-radius: 3px;
+}
+
+.text-input {
+  background: $off-black-light;
+  border: 1px solid $off-black-light;
+  border-bottom: .3rem solid darken($off-black-light, 10%);
+  color: $off-white;
+  margin: .4rem;
+  padding: $xs-size;
+}

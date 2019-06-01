@@ -1,0 +1,31 @@
+.login-layout {
+  // position: relative;
+}
+
+.login-layout__box {
+  background: fade-out(white, .15);
+  border-radius: 3px;
+  height: 15rem;
+  width: 25rem;
+  text-align: center;
+  padding-top: $l-size;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -9.1rem 0 0 -12.5rem;
+  h1 {
+    color: #333;
+    margin-bottom: $s-size
+  }
+}
+
+// .login-layout__box__button {
+//   background: $blue;
+//   color: white;
+//   font-weight: 700;
+//   border: none;
+//   border-bottom: .3rem solid darken($blue, 10%);
+//   padding: $xs-size;
+//   margin: $xs-size;
+//   border-radius: 3px;
+// }

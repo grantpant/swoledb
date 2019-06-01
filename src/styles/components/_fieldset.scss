@@ -32,3 +32,12 @@
   margin-right: $s-size;
   padding: $s-size;
 }
+
+.fieldset__exercise-name-body__button {
+  background: $blue;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-bottom: .3rem solid darken($blue, 10%);
+  padding: 1rem;
+}
