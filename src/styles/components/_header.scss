@@ -2,7 +2,7 @@
   background: $off-black;
   color: white;
   margin-bottom: $xl-size;
-  padding: $m-size 0;
+  padding: $m-size;
 }
 
 .header__container {
@@ -20,6 +20,7 @@
 .header__title__icon {
   width: 3.5rem;
   height: 3.5rem;
+  margin-right: $xs-size;
 }
 
 .header__title__text {
@@ -34,10 +35,15 @@
 
 .is-active {
   font-weight: bold;
-  text-decoration: underline;
 }
 
 .header__nav__button {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .header__container {
+    flex-direction: row;
+  }
 }
