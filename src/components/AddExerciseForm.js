@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { notification, Icon } from 'antd';
 import { client } from '../app';
 import ExerciseNameFieldset from './fieldsets/ExerciseNameFieldset';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
@@ -118,6 +119,16 @@ class AddExerciseForm extends Component {
       variables
     })
     .then((result) => {
+      notification.open({
+        icon: <Icon
+          type="check-circle"
+          theme="twoTone"
+          twoToneColor="#52c41a"
+        />,
+        message: 'Your exercise has been added!',
+        description: '(so much Swoleness)',
+        placement: 'bottomRight'
+      });
       console.log(result.data.createExercise);
       this.setState(() => this.initialState);
     })
