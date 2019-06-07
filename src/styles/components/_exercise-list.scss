@@ -2,13 +2,25 @@
   h1 {
     color: $off-white;
   }
+  @media (min-width: $desktop-breakpoint) {
+    min-width: 40rem;
+  }
 }
 
 .exercise-list__header {
   background: $gray;
+  border-radius: 3px;
   padding: $s-size;
 }
 
 .exercise-list__items {
+  background: $light-gray;
+  border-radius: 3px;
+  margin-top: 5px;
   padding: $s-size;
+}
+
+.exercise-list__item {
+  border-bottom: 1px solid darken(white, 25%);
+  padding-bottom: 3px;
 }

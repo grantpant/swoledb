@@ -113,7 +113,7 @@ const ExerciseList = (props) => {
             <div className="exercise-list__items">
               {data.exercises.map((exercise, index) => (
                 <div key={index}>
-                  <h4>{exercise.name}</h4>
+                  <p className="exercise-list__item">{exercise.name}</p>
                 </div>
               ))}
             </div>

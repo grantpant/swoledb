@@ -80,8 +80,8 @@ class ExerciseSearch extends Component{
   };
   render() {
     return (
-      <div className="search-container">
-        <div className="search-container__filter">
+      <div className="container container--search">
+        <div className="container--search__filter">
           <ExerciseListFilter
             state={this.state}
             onBodySectionsChange={this.onBodySectionsChange}

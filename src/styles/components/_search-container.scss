@@ -1,8 +1,14 @@
-.search-container {
+.container--search {
   display: flex;
 }
 
-.search-container__filter {
+.container--search__filter {
   max-width: 25rem;
   margin-right: $xl-size;
+}
+
+@media(min-width: $desktop-breakpoint) {
+  .container--search {
+    max-width: 80rem;
+  }
 }

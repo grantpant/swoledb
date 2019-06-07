@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { client } from '../app';
+import ExerciseNameFieldset from './fieldsets/ExerciseNameFieldset';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
 import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
@@ -125,25 +126,12 @@ class AddExerciseForm extends Component {
 
   render() {
     return (
-      <form className="container" onSubmit={this.onSubmit}>
-        <fieldset className="fieldset">
-          <div className="fieldset__header">
-            <h4>Exercise Name</h4>
-          </div>
-          <div className="fieldset__exercise-name-body">
-            <input
-              className="fieldset__exercise-name-body__input"
-              type="text"
-              name="exercise-name"
-              autoFocus
-              placeholder="Enter exercise name"
-              onChange={this.onNameChange}
-              value={this.state.name}
-            />
-            <button className="fieldset__exercise-name-body__button" type="submit" disabled={this.state.buttonDisabled}>Add Exercise</button>
-          </div>
-        </fieldset>
-        <br />
+      <form className="container container--add-exercise" onSubmit={this.onSubmit}>
+        <ExerciseNameFieldset
+          value={this.state.name}
+          onChange={this.onNameChange}
+          buttonDisabled={this.state.buttonDisabled}
+        />
         <BodySectionsFieldset
           inputType="radio"
           state={this.state.bodySection}
