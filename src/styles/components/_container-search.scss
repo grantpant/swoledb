@@ -1,0 +1,12 @@
+.container--search {
+  @media (min-width: $desktop-breakpoint) {
+    display: flex;
+    max-width: 80rem;
+  }
+  &__filter {
+    max-width: 25rem;
+  }
+  &__filter-dropdown {
+    margin: $m-size 0;
+  }
+}

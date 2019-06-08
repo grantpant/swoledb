@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
+
 import { bodySections } from './fieldsets/BodySectionsFieldset';
 import { primaryMovers } from './fieldsets/PrimaryMoversFieldset';
 import { movementTypes } from './fieldsets/MovementTypesFieldset';
@@ -7,6 +9,7 @@ import { workoutTypes } from './fieldsets/WorkoutTypesFieldset';
 import { equipment } from './fieldsets/EquipmentFieldset';
 import ExerciseListFilter from './ExerciseListFilter';
 import ExerciseList from './ExerciseList';
+import FiltersDropdown from './FiltersDropdown';
 import { checkboxHandler, toCamelCase } from '../utils/helpers';
 
 class ExerciseSearch extends Component{
@@ -81,17 +84,39 @@ class ExerciseSearch extends Component{
   render() {
     return (
       <div className="container container--search">
-        <div className="container--search__filter">
-          <ExerciseListFilter
-            state={this.state}
-            onBodySectionsChange={this.onBodySectionsChange}
-            onPrimaryMoversChange={this.onPrimaryMoversChange}
-            onMovementTypesChange={this.onMovementTypesChange}
-            onTrainingPhasesChange={this.onTrainingPhasesChange}
-            onWorkoutTypesChange={this.onWorkoutTypesChange}
-            onEquipmentChange={this.onEquipmentChange}
-          />
-        </div>
+        <MediaQuery minWidth={720}>
+          {(matches) => {
+            if (matches) {
+              return (
+                <div className="container--search__filter">
+                  <ExerciseListFilter
+                    state={this.state}
+                    onBodySectionsChange={this.onBodySectionsChange}
+                    onPrimaryMoversChange={this.onPrimaryMoversChange}
+                    onMovementTypesChange={this.onMovementTypesChange}
+                    onTrainingPhasesChange={this.onTrainingPhasesChange}
+                    onWorkoutTypesChange={this.onWorkoutTypesChange}
+                    onEquipmentChange={this.onEquipmentChange}
+                  />
+                </div>
+              );
+            } else {
+              return (
+                <div className="container--search__filter-dropdown">
+                  <FiltersDropdown
+                    state={this.state}
+                    onBodySectionsChange={this.onBodySectionsChange}
+                    onPrimaryMoversChange={this.onPrimaryMoversChange}
+                    onMovementTypesChange={this.onMovementTypesChange}
+                    onTrainingPhasesChange={this.onTrainingPhasesChange}
+                    onWorkoutTypesChange={this.onWorkoutTypesChange}
+                    onEquipmentChange={this.onEquipmentChange}
+                  />
+                </div>
+              );
+            }
+          }}
+        </MediaQuery>
         <ExerciseList filters={this.state} />
       </div>
     );

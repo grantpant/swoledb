@@ -1,7 +1,11 @@
 .container {
-  max-width: 80rem;
+  max-width: 50rem;
   margin: 0 auto;
-  padding: 0 $m-size
+  padding: 0 $m-size;
+
+  @media (min-width: $desktop-breakpoint) {
+    max-width: 80rem;
+  }
 }
 
 .container--add-exercise {

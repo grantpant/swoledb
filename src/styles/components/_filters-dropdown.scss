@@ -1,0 +1,18 @@
+// Override antd styles
+.ant-dropdown-menu {
+  &-sub {
+    padding: .4rem;
+    background-color: $purple-blue;
+  }
+  &-item-disabled:hover {
+    cursor: default;
+  }
+}
+
+// SwoleDB styles
+.dropdown-menu {
+  max-width: 15rem;
+  &__item {
+    padding: 0;
+  }
+}

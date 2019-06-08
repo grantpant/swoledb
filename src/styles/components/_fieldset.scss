@@ -1,14 +1,25 @@
 .fieldset {
-  background: $off-white;
+  background: $purple-blue;
   border: none;
   border-radius: 8px;
-  padding: $xs-size;
-  margin-bottom: $s-size;
+  padding: .4rem;
+  @media (max-width: 719px) {
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-end: 0;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    padding: .4rem;
+    margin-bottom: $s-size;
+  }
 }
 
 .fieldset__header {
   background: $off-black-light;
-  border-radius: 15px;
+  border-radius: 3px;
   padding: $m-size;
   max-width: 100%;
   h4 {
@@ -19,8 +30,9 @@
 }
 
 .fieldset__body {
+  color: white;
   background: $light-gray;
-  border-radius: 15px;
+  border-radius: 3px;
   padding: $m-size;
   margin-top: 5px;
 }

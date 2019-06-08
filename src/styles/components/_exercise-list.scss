@@ -1,4 +1,7 @@
 .exercise-list {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 40rem;
   h1 {
     color: $off-white;
   }
@@ -21,6 +24,6 @@
 }
 
 .exercise-list__item {
-  border-bottom: 1px solid darken(white, 25%);
+  border-bottom: 1px solid $purple-blue;
   padding-bottom: 3px;
 }
