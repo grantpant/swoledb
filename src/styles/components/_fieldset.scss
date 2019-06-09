@@ -3,14 +3,14 @@
   border: none;
   border-radius: 8px;
   padding: .4rem;
-  @media (max-width: 719px) {
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-block-start: 0;
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    padding-block-end: 0;
-  }
+  // @media (max-width: 719px) {
+  //   margin-inline-start: 0;
+  //   margin-inline-end: 0;
+  //   padding-block-start: 0;
+  //   padding-inline-start: 0;
+  //   padding-inline-end: 0;
+  //   padding-block-end: 0;
+  // }
   @media (min-width: $desktop-breakpoint) {
     padding: .4rem;
     margin-bottom: $s-size;

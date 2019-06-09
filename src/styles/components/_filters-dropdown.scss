@@ -1,18 +1,45 @@
-// Override antd styles
-.ant-dropdown-menu {
-  &-sub {
-    padding: .4rem;
-    background-color: $purple-blue;
-  }
-  &-item-disabled:hover {
+.dropdown {
+  &__menu {
+    background: white;
+    color: $off-black;
+    font-size: 1.4rem;;
+    position: absolute;
+    top: 202px;
+    left: 23px;
+    border-radius: 2px;
     cursor: default;
   }
-}
-
-// SwoleDB styles
-.dropdown-menu {
-  max-width: 15rem;
-  &__item {
-    padding: 0;
+  &__menu__item {
+    padding: 8px;
+    border-radius: inherit;
+    &:not(:last-child) {
+      border-bottom: 1px solid $off-white;
+    }
+    &:hover {
+      background: $off-white;
+    }
+  }
+  &__menu__subitem {
+    position: absolute;
+    left: 147px;
+    min-width: 15rem;
+    &--body-sections {
+      top: -4px;
+    }
+    &--primary-movers {
+      top: 28px;
+    }
+    &--movement-types {
+      top: 60px;
+    }
+    &--training-phases {
+      top: 93px;
+    }
+    &--workout-types {
+      top: 126px;
+    }
+    &--equipment {
+      top: 159px;
+    }
   }
 }
