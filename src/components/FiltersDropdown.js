@@ -19,7 +19,31 @@ class FiltersDropdown extends Component {
       equipment: false
     }
   };
+
+  dropdownRef = React.createRef();
+
+  componentDidMount() {
+    this.initState = { ...this.state };
+
+    // Register event listeners for closing dropdown menus
+    document.addEventListener('keydown', this.closeDropdown);
+    document.addEventListener('mousedown', this.closeDropdown);
+  }
+  componentWillUnmount() {
+    // Remove event listeners when unmounting component
+    document.removeEventListener('keydown', this.closeDropdown);
+    document.removeEventListener('mousedown', this.closeDropdown);
+  }
+
+  closeDropdown = (e) => {
+    // Return all state props to false (thus closing all dropdown menus) if the
+    // `esc key is pressed or if user clicks outside of any open dropdown menu
+    if (e.key === 'Escape' || !this.dropdownRef.current.contains(e.target)) {
+      this.setState(() => ({ ...this.initState }));
+    }
+  };
   toggleDropdown = () => {
+    // Open/close main dropdown menu
     this.setState((prevState) => (
       { dropdownOpen: !prevState.dropdownOpen }
     ));
@@ -28,28 +52,34 @@ class FiltersDropdown extends Component {
     const subMenu = e.target.title;
     let otherSubMenus = {};
 
+    // Close any open submenu that wasn't clicked
     for (let key in this.state.subMenusOpen) {
       if (key !== subMenu) {
         otherSubMenus[key] = false;
       }
     }
 
+    // Open/close submenu that was clicked
     this.setState((prevState) => ({
       subMenusOpen: {
-        [subMenu]: !prevState[subMenu],
+        [subMenu]: !prevState.subMenusOpen[subMenu],
         ...otherSubMenus
       }
     }));
   };
+
   render() {
+    const iconStyles = {
+      fontSize: '12px',
+      marginLeft: '12px'
+    };
+
     return (
-      <div className="dropdown">
-        <div className="dropdown__button">
-          <button className="button" onClick={this.toggleDropdown}>
-            Filters
-            <Icon type="down" style={{ fontSize: "12px", marginLeft: "6px" }} />
-          </button>
-        </div>
+      <div className="dropdown" ref={this.dropdownRef}>
+        <button className="button dropdown__button" onClick={this.toggleDropdown}>
+          Filters
+          <Icon type="down" style={{ fontSize: '12px', marginLeft: '6px' }} />
+        </button>
         {this.state.dropdownOpen && (
           <div className="dropdown__menu">
             <div
@@ -58,10 +88,13 @@ class FiltersDropdown extends Component {
               title="bodySections"
             >
               Body Sections
-              <Icon type="right" style={{ fontSize: "12px", marginLeft: "12px" }} />
+              <Icon type="right" style={iconStyles} />
             </div>
             {this.state.subMenusOpen.bodySections && (
-              <div className="dropdown__menu__subitem dropdown__menu__subitem--body-sections">
+              <div className="
+                dropdown__menu__subitem
+                dropdown__menu__subitem--body-sections
+              ">
                 <BodySectionsFieldset
                   inputType="checkbox"
                   state={this.props.state.bodySections}
@@ -75,10 +108,13 @@ class FiltersDropdown extends Component {
               title="primaryMovers"
             >
               Primary Movers
-              <Icon type="right" style={{ fontSize: "12px", marginLeft: "12px" }} />
+              <Icon type="right" style={iconStyles} />
             </div>
             {this.state.subMenusOpen.primaryMovers && (
-              <div className="dropdown__menu__subitem dropdown__menu__subitem--primary-movers">
+              <div className="
+                dropdown__menu__subitem
+                dropdown__menu__subitem--primary-movers
+              ">
                 <PrimaryMoversFieldset
                   inputType="checkbox"
                   state={this.props.state.primaryMovers}
@@ -92,10 +128,13 @@ class FiltersDropdown extends Component {
               title="movementTypes"
             >
               Movement Types
-              <Icon type="right" style={{ fontSize: "12px", marginLeft: "12px" }} />
+              <Icon type="right" style={iconStyles} />
             </div>
             {this.state.subMenusOpen.movementTypes && (
-              <div className="dropdown__menu__subitem dropdown__menu__subitem--movement-types">
+              <div className="
+                dropdown__menu__subitem
+                dropdown__menu__subitem--movement-types
+              ">
                 <MovementTypesFieldset
                   inputType="checkbox"
                   state={this.props.state.movementTypes}
@@ -109,10 +148,13 @@ class FiltersDropdown extends Component {
               title="trainingPhases"
             >
               Training Phases
-              <Icon type="right" style={{ fontSize: "12px", marginLeft: "12px" }} />
+              <Icon type="right" style={iconStyles} />
             </div>
             {this.state.subMenusOpen.trainingPhases && (
-              <div className="dropdown__menu__subitem dropdown__menu__subitem--training-phases">
+              <div className="
+                dropdown__menu__subitem
+                dropdown__menu__subitem--training-phases
+              ">
                 <TrainingPhasesFieldset
                   inputType="checkbox"
                   state={this.props.state.trainingPhases}
@@ -126,10 +168,13 @@ class FiltersDropdown extends Component {
               title="workoutTypes"
             >
               Workout Types
-              <Icon type="right" style={{ fontSize: "12px", marginLeft: "12px" }} />
+              <Icon type="right" style={iconStyles} />
             </div>
             {this.state.subMenusOpen.workoutTypes && (
-              <div className="dropdown__menu__subitem dropdown__menu__subitem--workout-types">
+              <div className="
+                dropdown__menu__subitem
+                dropdown__menu__subitem--workout-types
+              ">
                 <WorkoutTypesFieldset
                   inputType="checkbox"
                   state={this.props.state.workoutTypes}
@@ -143,10 +188,13 @@ class FiltersDropdown extends Component {
               title="equipment"
             >
               Equipment
-              <Icon type="right" style={{ fontSize: "12px", marginLeft: "12px" }} />
+              <Icon type="right" style={iconStyles} />
             </div>
             {this.state.subMenusOpen.equipment && (
-              <div className="dropdown__menu__subitem dropdown__menu__subitem--equipment">
+              <div className="
+                dropdown__menu__subitem
+                dropdown__menu__subitem--equipment
+              ">
                 <EquipmentFieldset
                   inputType="checkbox"
                   state={this.props.state.equipment}

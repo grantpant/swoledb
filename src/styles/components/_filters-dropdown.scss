@@ -1,15 +1,22 @@
 .dropdown {
+  display: inline-block;
+  &__button {
+    font-weight: normal;
+    margin: 0;
+  }
   &__menu {
     background: white;
     color: $off-black;
     font-size: 1.4rem;;
     position: absolute;
-    top: 202px;
-    left: 23px;
+    top: 195px;
+    left: 25px;
     border-radius: 2px;
     cursor: default;
   }
   &__menu__item {
+    display: flex;
+    justify-content: space-between;
     padding: 8px;
     border-radius: inherit;
     &:not(:last-child) {
