@@ -59,7 +59,7 @@ class FiltersDropdown extends Component {
       }
     }
 
-    // Open/close submenu that was clicked
+    // Open/close submenu that was clicked, closing any other open one
     this.setState((prevState) => ({
       subMenusOpen: {
         [subMenu]: !prevState.subMenusOpen[subMenu],

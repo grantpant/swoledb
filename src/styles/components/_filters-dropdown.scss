@@ -1,5 +1,6 @@
 .dropdown {
   display: inline-block;
+  position: relative;
   &__button {
     font-weight: normal;
     margin: 0;
@@ -9,10 +10,11 @@
     color: $off-black;
     font-size: 1.4rem;;
     position: absolute;
-    top: 195px;
-    left: 25px;
+    top: 4.1rem;
+    left: 1rem;
     border-radius: 2px;
     cursor: default;
+    width: 15rem;
   }
   &__menu__item {
     display: flex;

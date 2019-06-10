@@ -18,7 +18,7 @@ class Login extends Component {
       <Fragment>
         <div className="login-layout">
           <div className="login-layout__box">
-            <h1>Welcome to SwoleDB</h1>
+            <h1 className="login-layout__box__title">Welcome to SwoleDB</h1>
             <button
               className="button"
               value="login"
@@ -33,6 +33,9 @@ class Login extends Component {
             >
               Sign up
             </button>
+          </div>
+          <div className="login-layout__server-notice">
+            <p>*** Note that if the server has been idle for awhile it will take ~15 seconds to respond the first request. ***</p>
           </div>
         </div>
         <LoginModal

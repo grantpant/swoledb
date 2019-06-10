@@ -1,0 +1,26 @@
+.mobile-nav {
+  background: white;
+  color: black;
+  position: absolute;
+  top: 55px;
+  right: 0px;
+  cursor: pointer;
+  &__item {
+    padding: $xs-size;
+    &:not(:last-child) {
+      border-bottom: 1px solid $off-white;
+    }
+    &:hover {
+      background: $off-white;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    &:visited {
+      color: inherit;
+    }
+  }
+  &__logout {
+
+  }
+}

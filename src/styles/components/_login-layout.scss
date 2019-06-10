@@ -1,21 +1,32 @@
 .login-layout {
   // position: relative;
-}
-
-.login-layout__box {
-  background: fade-out(white, .15);
-  border-radius: 3px;
-  height: 15rem;
-  width: 25rem;
-  text-align: center;
-  padding-top: $l-size;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -9.1rem 0 0 -12.5rem;
-  h1 {
-    color: #333;
-    margin-bottom: $s-size
+  &__box {
+    background: fade-out(white, .15);
+    border-radius: 3px;
+    height: 15rem;
+    width: 25rem;
+    text-align: center;
+    padding-top: $l-size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -9.1rem 0 0 -12.5rem;
+    &__title {
+      color: #333;
+      margin-bottom: $s-size
+    }
+  }
+  &__server-notice {
+    max-width: 40rem;
+    position: absolute;
+    left: 15%;
+    top: 480px;
+    p {
+      color: $off-white;
+      font-style: italic;
+      font-size: 1.4rem;
+      text-align: center;
+    }
   }
 }
 

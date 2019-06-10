@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Query } from 'react-apollo';
+import MediaQuery from 'react-responsive';
+import MobileNav from './MobileNav';
 import { GET_LOGGED_IN_STATUS } from '../queries';
 import { history } from '../routers/AppRouter';
 
@@ -20,22 +22,28 @@ const Header = () => (
 
             return (
               data.isLoggedIn && (
-                <Fragment>
-                  <NavLink to="/dashboard" className="header__nav__link" activeClassName="is-active">Exercise Search</NavLink>
-                  <NavLink exact to="/add-exercise" className="header__nav__link" activeClassName="is-active">Add Exercise</NavLink>
-                  <button
-                    className="button header__nav__button"
-                    onClick={() => {
-                      client.writeData({
-                        data: { isLoggedIn: false }
-                      });
-                      localStorage.clear();
-                      history.push('/');
-                    }}
-                  >
-                    Logout
-                  </button>
-                </Fragment>
+                <MediaQuery minWidth={720}>
+                  {(matches) => (
+                    matches ? (
+                      <Fragment>
+                        <NavLink to="/dashboard" className="header__nav__link" activeClassName="is-active">Exercise Search</NavLink>
+                        <NavLink exact to="/add-exercise" className="header__nav__link" activeClassName="is-active">Add Exercise</NavLink>
+                        <button
+                          className="button header__nav__button"
+                          onClick={() => {
+                            client.writeData({
+                              data: { isLoggedIn: false }
+                            });
+                            localStorage.clear();
+                            history.push('/');
+                          }}
+                        >
+                          Logout
+                        </button>
+                      </Fragment>
+                    ) : <MobileNav client={client} />
+                  )}
+                </MediaQuery>
               )
             );
           }}
