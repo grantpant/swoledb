@@ -41,7 +41,7 @@ const Header = () => (
                           Logout
                         </button>
                       </Fragment>
-                    ) : <MobileNav client={client} />
+                    ) : <MobileNav />
                   )}
                 </MediaQuery>
               )
