@@ -35,7 +35,7 @@ class Login extends Component {
             </button>
           </div>
           <div className="login-layout__server-notice">
-            <p>*** Note that if the server has been idle for awhile it will take ~15 seconds to respond the first request. ***</p>
+            <p>*** Note that if the server has been idle for awhile it will take ~15 seconds to respond to the first request. ***</p>
           </div>
         </div>
         <LoginModal

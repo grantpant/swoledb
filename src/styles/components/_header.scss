@@ -25,10 +25,21 @@
     }
   }
 
-  &__nav__link {
-    color: $off-white;
-    padding: $xs-size;
-    text-decoration: none;
+  &__nav {
+  //   &:focus {
+  //     outline: none;
+  //   }
+
+    &__link {
+      color: $off-white;
+      padding: $xs-size;
+      text-decoration: none;
+    }
+
+    &__button {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 
   &__nav__button {

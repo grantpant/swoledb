@@ -17,10 +17,12 @@
     }
   }
   &__server-notice {
-    max-width: 40rem;
-    position: absolute;
-    left: 15%;
-    top: 480px;
+    width: 60%;
+    position: relative;
+    top: 38rem;
+    margin: 0 auto;
+    min-width: 34rem;
+    max-width: 44rem;
     p {
       color: $off-white;
       font-style: italic;
