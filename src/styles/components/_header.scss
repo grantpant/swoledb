@@ -21,7 +21,10 @@
     }
 
     &__text {
+      color: white;
       font-size: $l-size;
+      font-weight: bold;
+      margin: 0;
     }
   }
 

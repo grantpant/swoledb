@@ -1,5 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import { Icon } from 'antd';
 import { GET_EXERCISES } from '../queries';
 
 const ExerciseList = (props) => {
@@ -95,6 +96,12 @@ const ExerciseList = (props) => {
   const filter = consolidateFilters(props.filters);
   // console.log(JSON.stringify(filter, null, 2))
 
+  const iconStyles = {
+    fontSize: '10rem',
+    margin: '4.8rem auto',
+    width: '100%'
+  };
+
   return (
     <div className="exercise-list">
       <div className="exercise-list__header">
@@ -105,11 +112,14 @@ const ExerciseList = (props) => {
         variables={{ filter }}
         fetchPolicy="cache-and-network"
       >
-        {({ loading, error, data }) => {
-          if (loading) return <div>Fetching...</div>
-          if (error) return <div>Something happened...</div>
-
-          return (
+        {({ loading, error, data }) => (
+          loading ? (
+            <div>
+              <Icon type="loading" style={iconStyles} />
+            </div>
+          ) : error ? (
+            <div>Something happened...</div>
+          ) : (
             <div className="exercise-list__items">
               {data.exercises.map((exercise, index) => (
                 <div key={index}>
@@ -117,8 +127,8 @@ const ExerciseList = (props) => {
                 </div>
               ))}
             </div>
-          );
-        }}
+          )
+        )}
       </Query>
     </div>
   );

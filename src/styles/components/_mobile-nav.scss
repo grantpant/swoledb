@@ -2,11 +2,31 @@
   background: white;
   color: black;
   position: absolute;
-  top: 55px;
-  right: 0px;
+  top: 80px;
+  right: -218px;
   cursor: pointer;
+
+  &-enter {
+    right: -218px;
+    &-done {
+      right: 0px;
+    }
+  }
+  &-enter-active {
+    right: 0px;
+    transition: right 300ms ease-in-out;
+  }
+  &-exit {
+    right: 0px;
+  }
+  &-exit-active {
+    right: -218px;
+    transition: right 300ms ease-in-out;
+  }
+
   &__item {
-    padding: $xs-size;
+    font-size: 2.4rem;
+    padding: $m-size;
     &:not(:last-child) {
       border-bottom: 1px solid $off-white;
     }
@@ -25,6 +45,17 @@
   }
 }
 
-.anticon-menu:focus {
-  outline: none;
+// Override antd styles for menu icon
+.anticon-menu {
+  color: #a5afd7;
+  font-size: 3rem;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: #0056b3;
+  }
 }

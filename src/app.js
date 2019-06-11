@@ -4,8 +4,6 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css'
-import 'antd/lib/notification/style/index.css';
-import 'antd/lib/icon/style/index.css';
 import './styles/styles.scss';
 
 const cache = new InMemoryCache();

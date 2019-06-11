@@ -11,6 +11,9 @@
 }
 
 .exercise-list__header {
+  color: white;
+  font-size: $m-size;
+  margin: 0;
   background: $off-black-light;
   border-radius: 3px;
   padding: $s-size;
