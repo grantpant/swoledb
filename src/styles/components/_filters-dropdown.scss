@@ -4,6 +4,10 @@
   &__button {
     font-weight: normal;
     margin: 0;
+
+    &:focus {
+      outline: none;
+    }
   }
   &__menu {
     background: white;
@@ -15,10 +19,12 @@
     border-radius: 2px;
     cursor: default;
     width: 15rem;
+    z-index: 1;
   }
   &__menu__item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 8px;
     border-radius: inherit;
     &:not(:last-child) {

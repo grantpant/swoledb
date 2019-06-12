@@ -71,6 +71,7 @@ class FiltersDropdown extends Component {
   render() {
     const iconStyles = {
       fontSize: '12px',
+      height: '12px',
       marginLeft: '12px'
     };
 

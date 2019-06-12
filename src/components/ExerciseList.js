@@ -104,6 +104,16 @@ const ExerciseList = (props) => {
 
   return (
     <div className="exercise-list">
+      <div className="exercise-list__clear-btn__container">
+        <button
+          className="button"
+          onClick={() => {
+            props.clearFilters();
+          }}
+        >
+          Clear Filters
+        </button>
+      </div>
       <div className="exercise-list__header">
         <h1>Exercise List</h1>
       </div>
@@ -118,7 +128,15 @@ const ExerciseList = (props) => {
               <Icon type="loading" style={iconStyles} />
             </div>
           ) : error ? (
-            <div>Something happened...</div>
+            <div className="exercise-list__error">
+              <Icon type="exclamation-circle" style={iconStyles} />
+              <p>There was a problem getting your list from the server. <br /> Try a refresh?</p>
+            </div>
+          ) : data.exercises.length === 0 ? (
+            <div className="exercise-list__empty">
+              <Icon type="exclamation-circle" style={iconStyles} />
+              <p>Looks like there aren't any exercises that match those filters. Try unselecting some or hitting the "Clear Filters" button.</p>
+            </div>
           ) : (
             <div className="exercise-list__items">
               {data.exercises.map((exercise, index) => (

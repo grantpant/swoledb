@@ -20,8 +20,10 @@ class MobileNav extends Component {
   }
 
   closeNav = ({ target }) => {
-    // Close the nav menu if use clicks outside of it
-    if (!this.navRef.current.contains(target) ) {
+    const navDropdownNode = this.navRef.current;
+    const menuIconNode = this.props.headerNavRef.current;
+    // Close the nav menu if user clicks outside of it
+    if (!navDropdownNode.contains(target) && !menuIconNode.contains(target)) {
       this.setState(() => ({ menuOpen: false }));
     }
   };
