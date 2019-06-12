@@ -10,8 +10,24 @@ class MobileNav extends Component {
     menuOpen: false
   };
 
-  toggleMenu = (e) => {
-    if (!e.target.className.toString().includes('is-active')) {
+  navRef = React.createRef();
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.closeNav);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.closeNav);
+  }
+
+  closeNav = ({ target }) => {
+    // Close the nav menu if use clicks outside of it
+    if (!this.navRef.current.contains(target) ) {
+      this.setState(() => ({ menuOpen: false }));
+    }
+  };
+  toggleMenu = ({ target }) => {
+    // Don't close menu if user clicked on link to current page
+    if (!target.className.toString().includes('is-active')) {
       this.setState((prevState) => ({ menuOpen: !prevState.menuOpen }));
     }
   };
@@ -22,6 +38,7 @@ class MobileNav extends Component {
     localStorage.clear();
     history.push('/');
   };
+
   render() {
     return (
       <Fragment>
@@ -31,7 +48,7 @@ class MobileNav extends Component {
           timeout={300}
           classNames="mobile-nav"
         >
-          <div className="mobile-nav">
+          <div className="mobile-nav" ref={this.navRef}>
             <div className="mobile-nav__item" onClick={this.toggleMenu}>
               <NavLink to="/dashboard" className="mobile-nav__link" activeClassName="is-active">Exercise Search</NavLink>
             </div>
