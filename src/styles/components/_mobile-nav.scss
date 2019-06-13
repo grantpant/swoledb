@@ -8,20 +8,24 @@
 
   &-enter {
     right: -218px;
+
+    &-active {
+      right: 0px;
+      transition: right 300ms ease-in-out;
+    }
+
     &-done {
       right: 0px;
     }
   }
-  &-enter-active {
-    right: 0px;
-    transition: right 300ms ease-in-out;
-  }
+
   &-exit {
     right: 0px;
-  }
-  &-exit-active {
-    right: -218px;
-    transition: right 300ms ease-in-out;
+
+    &-active {
+      right: -218px;
+      transition: right 300ms ease-in-out;
+    }
   }
 
   &__item {

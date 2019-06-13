@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { Icon } from 'antd';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
@@ -24,6 +25,8 @@ class FiltersDropdown extends Component {
 
   componentDidMount() {
     this.initState = { ...this.state };
+
+    console.log(this.dropdownRef.current.clientHeight)
 
     // Register event listeners for closing dropdown menus
     document.addEventListener('keydown', this.closeDropdown);
@@ -77,11 +80,15 @@ class FiltersDropdown extends Component {
 
     return (
       <div className="dropdown" ref={this.dropdownRef}>
-        <button className="button dropdown__button" onClick={this.toggleDropdown}>
-          Filters
+        <div className="dropdown__toggle" onClick={this.toggleDropdown}>
+          <span>Filters</span>
           <Icon type="down" style={{ fontSize: '12px', marginLeft: '6px' }} />
-        </button>
-        {this.state.dropdownOpen && (
+        </div>
+        <CSSTransition
+          in={this.state.dropdownOpen}
+          timeout={400}
+          classNames="dropdown__menu"
+        >
           <div className="dropdown__menu">
             <div
               className="dropdown__menu__item"
@@ -89,122 +96,128 @@ class FiltersDropdown extends Component {
               title="bodySections"
             >
               Body Sections
-              <Icon type="right" style={iconStyles} />
+              <Icon type="down" style={iconStyles} />
             </div>
-            {this.state.subMenusOpen.bodySections && (
-              <div className="
-                dropdown__menu__subitem
-                dropdown__menu__subitem--body-sections
-              ">
+            <CSSTransition
+              in={this.state.subMenusOpen.bodySections}
+              timeout={400}
+              classNames="dropdown__menu__subitem"
+            >
+              <div className="dropdown__menu__subitem" style={{ '--client-height': '220.2px' }}>
                 <BodySectionsFieldset
                   inputType="checkbox"
                   state={this.props.state.bodySections}
                   onChange={this.props.onBodySectionsChange}
                 />
               </div>
-            )}
+            </CSSTransition>
             <div
               className="dropdown__menu__item"
               onClick={this.toggleSubMenus}
               title="primaryMovers"
             >
               Primary Movers
-              <Icon type="right" style={iconStyles} />
+              <Icon type="down" style={iconStyles} />
             </div>
-            {this.state.subMenusOpen.primaryMovers && (
-              <div className="
-                dropdown__menu__subitem
-                dropdown__menu__subitem--primary-movers
-              ">
+            <CSSTransition
+              in={this.state.subMenusOpen.primaryMovers}
+              timeout={400}
+              classNames="dropdown__menu__subitem"
+            >
+              <div className="dropdown__menu__subitem" style={{ '--client-height': '247.27px' }}>
                 <PrimaryMoversFieldset
                   inputType="checkbox"
                   state={this.props.state.primaryMovers}
                   onChange={this.props.onPrimaryMoversChange}
                 />
               </div>
-            )}
+            </CSSTransition>
             <div
               className="dropdown__menu__item"
               onClick={this.toggleSubMenus}
               title="movementTypes"
             >
               Movement Types
-              <Icon type="right" style={iconStyles} />
+              <Icon type="down" style={iconStyles} />
             </div>
-            {this.state.subMenusOpen.movementTypes && (
-              <div className="
-                dropdown__menu__subitem
-                dropdown__menu__subitem--movement-types
-              ">
+            <CSSTransition
+              in={this.state.subMenusOpen.movementTypes}
+              timeout={400}
+              classNames="dropdown__menu__subitem"
+            >
+              <div className="dropdown__menu__subitem" style={{ '--client-height': '81.45px' }}>
                 <MovementTypesFieldset
                   inputType="checkbox"
                   state={this.props.state.movementTypes}
                   onChange={this.props.onMovementTypesChange}
                 />
               </div>
-            )}
+            </CSSTransition>
             <div
               className="dropdown__menu__item"
               onClick={this.toggleSubMenus}
               title="trainingPhases"
             >
               Training Phases
-              <Icon type="right" style={iconStyles} />
+              <Icon type="down" style={iconStyles} />
             </div>
-            {this.state.subMenusOpen.trainingPhases && (
-              <div className="
-                dropdown__menu__subitem
-                dropdown__menu__subitem--training-phases
-              ">
+            <CSSTransition
+              in={this.state.subMenusOpen.trainingPhases}
+              timeout={400}
+              classNames="dropdown__menu__subitem"
+            >
+              <div className="dropdown__menu__subitem" style={{ '--client-height': '122.91px' }}>
                 <TrainingPhasesFieldset
                   inputType="checkbox"
                   state={this.props.state.trainingPhases}
                   onChange={this.props.onTrainingPhasesChange}
                 />
               </div>
-            )}
+            </CSSTransition>
             <div
               className="dropdown__menu__item"
               onClick={this.toggleSubMenus}
               title="workoutTypes"
             >
               Workout Types
-              <Icon type="right" style={iconStyles} />
+              <Icon type="down" style={iconStyles} />
             </div>
-            {this.state.subMenusOpen.workoutTypes && (
-              <div className="
-                dropdown__menu__subitem
-                dropdown__menu__subitem--workout-types
-              ">
+            <CSSTransition
+              in={this.state.subMenusOpen.workoutTypes}
+              timeout={400}
+              classNames="dropdown__menu__subitem"
+            >
+              <div className="dropdown__menu__subitem" style={{ '--client-height': '102.18px' }}>
                 <WorkoutTypesFieldset
                   inputType="checkbox"
                   state={this.props.state.workoutTypes}
                   onChange={this.props.onWorkoutTypesChange}
                 />
               </div>
-            )}
+            </CSSTransition>
             <div
               className="dropdown__menu__item"
               onClick={this.toggleSubMenus}
               title="equipment"
             >
               Equipment
-              <Icon type="right" style={iconStyles} />
+              <Icon type="down" style={iconStyles} />
             </div>
-            {this.state.subMenusOpen.equipment && (
-              <div className="
-                dropdown__menu__subitem
-                dropdown__menu__subitem--equipment
-              ">
+            <CSSTransition
+              in={this.state.subMenusOpen.equipment}
+              timeout={400}
+              classNames="dropdown__menu__subitem"
+            >
+              <div className="dropdown__menu__subitem" style={{ '--client-height': '475.27px' }}>
                 <EquipmentFieldset
                   inputType="checkbox"
                   state={this.props.state.equipment}
                   onChange={this.props.onEquipmentChange}
                 />
               </div>
-            )}
+            </CSSTransition>
           </div>
-        )}
+        </CSSTransition>
       </div>
     );
   }

@@ -1,60 +1,88 @@
+@mixin open-dropdown($menu-height, $overflow) {
+  &-enter {
+    max-height: 0px;
+
+    &-active {
+      max-height: $menu-height;
+      transition: max-height 400ms ease-in-out;
+    }
+
+    &-done {
+      max-height: $menu-height;
+      overflow: $overflow;
+    }
+  }
+
+  &-exit {
+    max-height: $menu-height;
+
+    &-active {
+      max-height: 0px;
+      transition: max-height 400ms ease-in-out;
+    }
+  }
+}
+
 .dropdown {
-  display: inline-block;
-  position: relative;
-  &__button {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 8rem;
+  right: 0;
+  width: 16rem;
+
+  &__toggle {
+    background: white;
+    color: $off-black;
     font-weight: normal;
     margin: 0;
+    padding: 8px;
+    width: inherit;
 
     &:focus {
       outline: none;
     }
   }
+
   &__menu {
     background: white;
     color: $off-black;
     font-size: 1.4rem;;
-    position: absolute;
-    top: 4.1rem;
-    left: 1rem;
-    border-radius: 2px;
     cursor: default;
-    width: 15rem;
+    width: inherit;
     z-index: 1;
-  }
-  &__menu__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    border-radius: inherit;
-    &:not(:last-child) {
-      border-bottom: 1px solid $off-white;
+
+    max-height: 0px;
+    overflow: hidden;
+
+    @include open-dropdown(225.8px, visible);
+
+    &__item {
+      background: $off-black-light;
+      color: $off-white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $off-white;
+      }
+
+      &:hover {
+        background: $off-white;
+        color: $off-black-light;
+        font-weight: bold;
+      }
     }
-    &:hover {
-      background: $off-white;
-    }
-  }
-  &__menu__subitem {
-    position: absolute;
-    left: 147px;
-    min-width: 15rem;
-    &--body-sections {
-      top: -4px;
-    }
-    &--primary-movers {
-      top: 28px;
-    }
-    &--movement-types {
-      top: 60px;
-    }
-    &--training-phases {
-      top: 93px;
-    }
-    &--workout-types {
-      top: 126px;
-    }
-    &--equipment {
-      top: 159px;
+
+    &__subitem {
+      width: inherit;
+
+      max-height: 0px;
+      overflow: hidden;
+
+      @include open-dropdown(var(--client-height), visible)
     }
   }
 }
