@@ -105,6 +105,7 @@ class FiltersDropdown extends Component {
             >
               <div className="dropdown__menu__subitem" style={{ '--client-height': '220.2px' }}>
                 <BodySectionsFieldset
+                  mobile
                   inputType="checkbox"
                   state={this.props.state.bodySections}
                   onChange={this.props.onBodySectionsChange}
@@ -126,6 +127,7 @@ class FiltersDropdown extends Component {
             >
               <div className="dropdown__menu__subitem" style={{ '--client-height': '247.27px' }}>
                 <PrimaryMoversFieldset
+                  mobile
                   inputType="checkbox"
                   state={this.props.state.primaryMovers}
                   onChange={this.props.onPrimaryMoversChange}
@@ -147,6 +149,7 @@ class FiltersDropdown extends Component {
             >
               <div className="dropdown__menu__subitem" style={{ '--client-height': '81.45px' }}>
                 <MovementTypesFieldset
+                  mobile
                   inputType="checkbox"
                   state={this.props.state.movementTypes}
                   onChange={this.props.onMovementTypesChange}
@@ -168,6 +171,7 @@ class FiltersDropdown extends Component {
             >
               <div className="dropdown__menu__subitem" style={{ '--client-height': '122.91px' }}>
                 <TrainingPhasesFieldset
+                  mobile
                   inputType="checkbox"
                   state={this.props.state.trainingPhases}
                   onChange={this.props.onTrainingPhasesChange}
@@ -189,6 +193,7 @@ class FiltersDropdown extends Component {
             >
               <div className="dropdown__menu__subitem" style={{ '--client-height': '102.18px' }}>
                 <WorkoutTypesFieldset
+                  mobile
                   inputType="checkbox"
                   state={this.props.state.workoutTypes}
                   onChange={this.props.onWorkoutTypesChange}
@@ -210,6 +215,7 @@ class FiltersDropdown extends Component {
             >
               <div className="dropdown__menu__subitem" style={{ '--client-height': '475.27px' }}>
                 <EquipmentFieldset
+                  mobile
                   inputType="checkbox"
                   state={this.props.state.equipment}
                   onChange={this.props.onEquipmentChange}

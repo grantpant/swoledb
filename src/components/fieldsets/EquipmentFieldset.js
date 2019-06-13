@@ -15,9 +15,11 @@ class EquipmentFieldset extends React.Component {
   render() {
     return (
       <fieldset className="fieldset">
-        <div className="fieldset__header">
-          <h4>Equipment</h4>
-        </div>
+        {!this.props.mobile && (
+          <div className="fieldset__header">
+            <h4>Equipment</h4>
+          </div>
+        )}
         <div className="fieldset__body">
           {equipment.map((equipmentPiece, i) => {
             const checkedValue = toCamelCase(equipmentPiece);

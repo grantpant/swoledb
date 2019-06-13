@@ -12,9 +12,11 @@ class PrimaryMoversFieldset extends Component {
   render() {
     return (
       <fieldset className="fieldset">
-        <div className="fieldset__header">
-          <h4>Primary Movers</h4>
-        </div>
+        {!this.props.mobile && (
+          <div className="fieldset__header">
+            <h4>Primary Movers</h4>
+          </div>
+        )}
         <div className="fieldset__body">
           {primaryMovers.map((mover, i) => (
             <PrimaryMoverInput

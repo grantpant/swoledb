@@ -12,9 +12,11 @@ class MovementTypesFieldset extends Component {
   render() {
     return (
       <fieldset className="fieldset">
-        <div className="fieldset__header">
-          <h4>Movement Types</h4>
-        </div>
+        {!this.props.mobile && (
+          <div className="fieldset__header">
+            <h4>Movement Types</h4>
+          </div>
+        )}
         <div className="fieldset__body">
           {movementTypes.map((moveType, i) => (
             <MovementTypeInput
