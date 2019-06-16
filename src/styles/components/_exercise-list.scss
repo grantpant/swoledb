@@ -34,7 +34,21 @@
 
   &__item {
     border-bottom: 1px solid $purple-blue;
-    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .8rem;
+
+    &__text {
+      margin: 0;
+    }
+
+    &__edit-btn {
+      color: $off-black;
+      border-radius: 5px;
+      font-size: 1.4rem;
+      height: 23px;
+    }
   }
 
   @media (min-width: $desktop-breakpoint) {

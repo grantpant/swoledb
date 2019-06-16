@@ -26,8 +26,6 @@ class FiltersDropdown extends Component {
   componentDidMount() {
     this.initState = { ...this.state };
 
-    console.log(this.dropdownRef.current.clientHeight)
-
     // Register event listeners for closing dropdown menus
     document.addEventListener('keydown', this.closeDropdown);
     document.addEventListener('mousedown', this.closeDropdown);
@@ -82,11 +80,14 @@ class FiltersDropdown extends Component {
       <div className="dropdown" ref={this.dropdownRef}>
         <div className="dropdown__toggle" onClick={this.toggleDropdown}>
           <span>Filters</span>
-          <Icon type="down" style={{ fontSize: '12px', marginLeft: '6px' }} />
+          <Icon
+            type={this.state.dropdownOpen ? 'left' : 'down'}
+            style={{ fontSize: '12px', marginLeft: '6px' }}
+          />
         </div>
         <CSSTransition
           in={this.state.dropdownOpen}
-          timeout={400}
+          timeout={200}
           classNames="dropdown__menu"
         >
           <div className="dropdown__menu">
@@ -96,7 +97,10 @@ class FiltersDropdown extends Component {
               title="bodySections"
             >
               Body Sections
-              <Icon type="down" style={iconStyles} />
+              <Icon
+                type={this.state.subMenusOpen.bodySections ? 'left' : 'down'}
+                style={iconStyles}
+              />
             </div>
             <CSSTransition
               in={this.state.subMenusOpen.bodySections}
@@ -118,7 +122,10 @@ class FiltersDropdown extends Component {
               title="primaryMovers"
             >
               Primary Movers
-              <Icon type="down" style={iconStyles} />
+              <Icon
+                type={this.state.subMenusOpen.primaryMovers ? 'left' : 'down'}
+                style={iconStyles}
+              />
             </div>
             <CSSTransition
               in={this.state.subMenusOpen.primaryMovers}
@@ -140,7 +147,10 @@ class FiltersDropdown extends Component {
               title="movementTypes"
             >
               Movement Types
-              <Icon type="down" style={iconStyles} />
+              <Icon
+                type={this.state.subMenusOpen.movementTypes ? 'left' : 'down'}
+                style={iconStyles}
+              />
             </div>
             <CSSTransition
               in={this.state.subMenusOpen.movementTypes}
@@ -162,7 +172,10 @@ class FiltersDropdown extends Component {
               title="trainingPhases"
             >
               Training Phases
-              <Icon type="down" style={iconStyles} />
+              <Icon
+                type={this.state.subMenusOpen.trainingPhases ? 'left' : 'down'}
+                style={iconStyles}
+              />
             </div>
             <CSSTransition
               in={this.state.subMenusOpen.trainingPhases}
@@ -184,7 +197,10 @@ class FiltersDropdown extends Component {
               title="workoutTypes"
             >
               Workout Types
-              <Icon type="down" style={iconStyles} />
+              <Icon
+                type={this.state.subMenusOpen.workoutTypes ? 'left' : 'down'}
+                style={iconStyles}
+              />
             </div>
             <CSSTransition
               in={this.state.subMenusOpen.workoutTypes}
@@ -206,7 +222,10 @@ class FiltersDropdown extends Component {
               title="equipment"
             >
               Equipment
-              <Icon type="down" style={iconStyles} />
+              <Icon
+                type={this.state.subMenusOpen.equipment ? 'left' : 'down'}
+                style={iconStyles}
+              />
             </div>
             <CSSTransition
               in={this.state.subMenusOpen.equipment}

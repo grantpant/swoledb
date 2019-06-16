@@ -71,7 +71,7 @@ class AddExerciseForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    // Define arrays for query variable that will be lists
+    // Define arrays for query variables that will be lists
     const trainingPhases = [];
     const workoutTypes = [];
     const equipment = [];

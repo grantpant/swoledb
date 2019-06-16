@@ -40,7 +40,9 @@ class LoginModal extends Component {
       localStorage.setItem('jwt', res.data.login.token);
       // Set isLoggedIn to true in Apollo cache
       client.writeData({
-        data: { isLoggedIn: true }
+        data: {
+          isLoggedIn: true
+        }
       });
       // Send user to the dashboard
       history.push('/dashboard');

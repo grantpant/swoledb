@@ -1,10 +1,10 @@
-@mixin open-dropdown($menu-height, $overflow) {
+@mixin open-dropdown($duration, $menu-height, $overflow) {
   &-enter {
     max-height: 0px;
 
     &-active {
       max-height: $menu-height;
-      transition: max-height 400ms ease-in-out;
+      transition: max-height $duration ease-in-out;
     }
 
     &-done {
@@ -18,7 +18,7 @@
 
     &-active {
       max-height: 0px;
-      transition: max-height 400ms ease-in-out;
+      transition: max-height $duration ease-in-out;
     }
   }
 }
@@ -27,13 +27,12 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 8rem;
-  right: 0;
+  top: 15rem;
+  right: 1rem;
   width: 16rem;
 
   &__toggle {
-    background: white;
-    color: $off-black;
+    cursor: pointer;
     font-weight: normal;
     margin: 0;
     padding: 8px;
@@ -47,15 +46,15 @@
   &__menu {
     background: white;
     color: $off-black;
-    font-size: 1.4rem;;
     cursor: default;
+    font-size: 1.4rem;;
     width: inherit;
     z-index: 1;
 
     max-height: 0px;
     overflow: hidden;
 
-    @include open-dropdown(225.8px, visible);
+    @include open-dropdown(200ms, 225.8px, visible);
 
     &__item {
       background: $off-black-light;
@@ -65,7 +64,7 @@
       align-items: center;
       padding: 8px;
 
-      &:not(:last-child) {
+      &:not(&:last-child) {
         border-bottom: 1px solid $off-white;
       }
 
@@ -82,7 +81,7 @@
       max-height: 0px;
       overflow: hidden;
 
-      @include open-dropdown(var(--client-height), visible)
+      @include open-dropdown(400ms, var(--client-height), visible)
     }
   }
 }

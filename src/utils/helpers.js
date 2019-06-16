@@ -1,9 +1,9 @@
 export const checkboxHandler = (fieldsetItem, prevState, stateFieldset) => {
-  const ticker = (stateKey) => {
-    return fieldsetItem === stateKey
+  const ticker = (stateKey) => (
+    fieldsetItem === stateKey
       ? !prevState[stateFieldset][stateKey]
-      : prevState[stateFieldset][stateKey];
-  };
+      : prevState[stateFieldset][stateKey]
+  );
 
   const newState = {};
 
