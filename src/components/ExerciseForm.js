@@ -8,31 +8,37 @@ import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
 import TrainingPhasesFieldset, { trainingPhases } from './fieldsets/TrainingPhasesFieldset';
 import WorkoutTypesFieldset, { workoutTypes } from './fieldsets/WorkoutTypesFieldset';
 import EquipmentFieldset, { equipment } from './fieldsets/EquipmentFieldset';
-import { checkboxHandler, toCamelCase } from '../utils/helpers';
+import { checkboxHandler, toCamelCase, isChecked } from '../utils/helpers';
 import { CREATE_EXERCISE } from '../queries';
 
-class AddExerciseForm extends Component {
+class ExerciseForm extends Component {
   state = {
-    name: '',
-    bodySection: '',
-    primaryMover: '',
-    movementType: '',
+    name: this.props.exercise ? this.props.exercise.name : '',
+    bodySection: this.props.exercise ? this.props.exercise.bodySection : '',
+    primaryMover: this.props.exercise ? this.props.exercise.primaryMover : '',
+    movementType: this.props.exercise ? this.props.exercise.movementType : '',
     trainingPhases: trainingPhases.reduce(
       (phases, phase) => ({
         ...phases,
-        [phase.toLowerCase()]: false
+        [phase.toLowerCase()]: this.props.exercise
+          ? isChecked(this.props.exercise.trainingPhases, phase)
+          : false
       }), {}
     ),
     workoutTypes: workoutTypes.reduce(
       (types, type) => ({
         ...types,
-        [toCamelCase(type)]: false
+        [toCamelCase(type)]: this.props.exercise
+          ? isChecked(this.props.exercise.workoutTypes, type)
+          : false
       }), {}
     ),
     equipment: equipment.reduce(
       (equipment, piece) => ({
         ...equipment,
-        [toCamelCase(piece)]: false
+        [toCamelCase(piece)]: this.props.exercise
+          ? isChecked(this.props.exercise.equipment, piece)
+          : false
       }), {}
     ),
     buttonDisabled: false
@@ -137,7 +143,7 @@ class AddExerciseForm extends Component {
 
   render() {
     return (
-      <form className="container container--add-exercise" onSubmit={this.onSubmit}>
+      <form className="container exercise-form" onSubmit={this.onSubmit}>
         <ExerciseNameFieldset
           value={this.state.name}
           onChange={this.onNameChange}
@@ -181,4 +187,4 @@ class AddExerciseForm extends Component {
   }
 }
 
-export default AddExerciseForm;
+export default ExerciseForm;

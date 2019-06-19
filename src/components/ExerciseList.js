@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { Icon } from 'antd';
+import { history } from '../routers/AppRouter';
 import { GET_EXERCISES } from '../queries';
 
 const ExerciseList = (props) => {
@@ -142,7 +143,14 @@ const ExerciseList = (props) => {
               {data.exercises.map((exercise, index) => (
                 <div key={index} className="exercise-list__item">
                   <p className="exercise-list__item__text">{exercise.name}</p>
-                  <button className="exercise-list__item__edit-btn">Edit</button>
+                  <button
+                    className="exercise-list__item__edit-btn"
+                    onClick={() => {
+                      history.push(`/edit-exercise/${exercise.id}`);
+                    }}
+                  >
+                    Edit
+                  </button>
                 </div>
               ))}
             </div>

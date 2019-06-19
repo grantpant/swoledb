@@ -21,7 +21,7 @@ const Header = () => {
             {({ data, client }) => {
               // For keeping track of Apollo store isLoggedIn prop,
               // since ApolloDevtool sucks
-              console.log('isLoggedIn: ', data)
+              console.log('isLoggedIn: ', data.isLoggedIn)
 
               return (
                 data.isLoggedIn && (

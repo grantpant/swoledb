@@ -5,7 +5,8 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Header from '../components/Header';
 import ExerciseSearch from '../components/ExerciseSearch';
-import AddExerciseForm from '../components/AddExerciseForm';
+import AddExercise from '../components/AddExercise';
+import EditExercise from '../components/EditExercise';
 import Login from '../components/Login';
 
 export const history = createBrowserHistory();
@@ -16,7 +17,8 @@ const AppRouter = () => (
     <Switch>
       <PublicRoute exact path="/" component={Login} />
       <PrivateRoute path="/dashboard" component={ExerciseSearch} />
-      <PrivateRoute path="/add-exercise" component={AddExerciseForm} />
+      <PrivateRoute path="/add-exercise" component={AddExercise} />
+      <PrivateRoute path="/edit-exercise/:id" component={EditExercise} />
     </Switch>
   </Router>
 );

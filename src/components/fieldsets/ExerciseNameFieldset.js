@@ -23,7 +23,7 @@ class ExerciseNameFieldset extends Component {
               type="submit"
               disabled={this.props.buttonDisabled}
             >
-              Add Exercise
+              {this.props.value ? 'Save' : 'Add'} Exercise
             </button>
           </div>
         </fieldset>

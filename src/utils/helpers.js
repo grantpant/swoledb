@@ -38,6 +38,18 @@ export const toCamelCase = (checkboxLabel) => {
   return camelizedLabel;
 };
 
+export const isChecked = (fieldset, checkboxInput) => {
+  const match = fieldset.find((exercise) => (
+    [
+      checkboxInput.toLowerCase(),
+      toCamelCase(checkboxInput)
+    ]
+    .includes(exercise.name)
+  ));
+
+  return match;
+};
+
 export const checkedValue = (props, inputValue) => (
   // For radio inputs, return true if string value in AddExerciseForms's
   // state property matches that of the input value.

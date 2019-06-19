@@ -61,6 +61,22 @@ export const CREATE_EXERCISE = gql`
 export const GET_EXERCISES = gql`
   query($filter: ExerciseWhereInput) {
     exercises(where: $filter) {
+      id
+      name
+      bodySection
+      primaryMover
+      movementType
+      trainingPhases { name }
+      workoutTypes { name }
+      equipment { name }
+    }
+  }
+`;
+
+export const GET_EXERCISE = gql`
+  query($exerciseId: ExerciseWhereUniqueInput!) {
+    exercise(where: $exerciseId) {
+      id
       name
       bodySection
       primaryMover
