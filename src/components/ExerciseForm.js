@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { notification, Icon } from 'antd';
 import { client } from '../app';
+import { history } from '../routers/AppRouter';
 import ExerciseNameFieldset from './fieldsets/ExerciseNameFieldset';
 import BodySectionsFieldset from './fieldsets/BodySectionsFieldset';
 import PrimaryMoversFieldset from './fieldsets/PrimaryMoversFieldset';
@@ -8,8 +9,8 @@ import MovementTypesFieldset from './fieldsets/MovementTypesFieldset';
 import TrainingPhasesFieldset, { trainingPhases } from './fieldsets/TrainingPhasesFieldset';
 import WorkoutTypesFieldset, { workoutTypes } from './fieldsets/WorkoutTypesFieldset';
 import EquipmentFieldset, { equipment } from './fieldsets/EquipmentFieldset';
-import { checkboxHandler, toCamelCase, isChecked } from '../utils/helpers';
-import { CREATE_EXERCISE } from '../queries';
+import { checkboxHandler, toCamelCase, isChecked, configCheckboxVars } from '../utils/helpers';
+import { CREATE_EXERCISE, UPDATE_EXERCISE } from '../queries';
 
 class ExerciseForm extends Component {
   state = {
@@ -74,7 +75,7 @@ class ExerciseForm extends Component {
       checkboxHandler(equipmentPiece, prevState, 'equipment')
     ));
   };
-  onSubmit = (e) => {
+  createExercise = async (e) => {
     e.preventDefault();
 
     // Define arrays for query variables that will be lists
@@ -120,11 +121,12 @@ class ExerciseForm extends Component {
       }
     };
 
-    client.mutate({
-      mutation: CREATE_EXERCISE,
-      variables
-    })
-    .then((result) => {
+    try {
+      const newExercise = await client.mutate({
+        mutation: CREATE_EXERCISE,
+        variables
+      });
+
       notification.open({
         icon: <Icon
           type="check-circle"
@@ -132,18 +134,106 @@ class ExerciseForm extends Component {
           twoToneColor="#52c41a"
         />,
         message: 'Your exercise has been added!',
-        description: '(so much Swoleness)',
+        description: '(so much swoleness)',
         placement: 'bottomRight'
       });
-      console.log(result.data.createExercise);
+
+      console.log(newExercise);
       this.setState(() => this.initialState);
-    })
-    .catch((err) => console.warn(err));
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  updateExercise = async (e) => {
+    e.preventDefault();
+
+    const { exercise } = this.props;
+    const {
+      name,
+      bodySection,
+      primaryMover,
+      movementType,
+      trainingPhases,
+      workoutTypes,
+      equipment
+    } = this.state;
+
+    const variables = {
+      where: { id: this.props.exercise.id },
+      data: {}
+    };
+
+    // If name was modified, add it to the mutation vars
+    if (name !== exercise.name) {
+      variables.data.name = name;
+    }
+
+    // If bodySection was modified, add it to the mutation vars
+    if (bodySection !== exercise.bodySection) {
+      variables.data.bodySection = bodySection;
+    }
+
+    // If primaryMover was modified, add it to the mutation vars
+    if (primaryMover !== exercise.primaryMover) {
+      variables.data.primaryMover = primaryMover;
+    }
+
+    // If movementType was modified, add it to the mutation vars
+    if (movementType !== exercise.movementType) {
+      variables.data.movementType = movementType;
+    }
+
+    // Configure mutation vars for any changed trainingPhases checkboxes
+    variables.data.trainingPhases = configCheckboxVars(
+      trainingPhases,
+      exercise.trainingPhases,
+      variables.data.trainingPhases
+    );
+
+    // Configure mutation vars for any changed workoutTypes checkboxes
+    variables.data.workoutTypes = configCheckboxVars(
+      workoutTypes,
+      exercise.workoutTypes,
+      variables.data.workoutTypes
+    );
+
+    // Configure mutation vars for any changed equipment checkboxes
+    variables.data.equipment = configCheckboxVars(
+      equipment,
+      exercise.equipment,
+      variables.data.equipment
+    );
+
+    // Fire off updateExercise mutation
+    try {
+      const updatedExercise = await client.mutate({
+        mutation: UPDATE_EXERCISE,
+        variables
+      });
+
+      history.push('/dashboard');
+
+      notification.open({
+        icon: <Icon
+          type="check-circle"
+          theme="twoTone"
+          twoToneColor="#52c41a"
+        />,
+        message: 'Exercise updated successfully',
+        placement: 'bottomRight'
+      });
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   render() {
     return (
-      <form className="container exercise-form" onSubmit={this.onSubmit}>
+      <form
+        className="container exercise-form"
+        onSubmit={this.props.exercise ? this.updateExercise : this.createExercise}
+      >
         <ExerciseNameFieldset
           value={this.state.name}
           onChange={this.onNameChange}

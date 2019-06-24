@@ -58,6 +58,36 @@ export const CREATE_EXERCISE = gql`
   }
 `;
 
+export const UPDATE_EXERCISE = gql`
+  mutation(
+    $data: ExerciseUpdateInput!,
+    $where: ExerciseWhereUniqueInput!
+  ) {
+    updateExercise(
+      data: $data,
+      where: $where
+    ) {
+      name
+      bodySection
+      primaryMover
+      movementType
+      trainingPhases {
+        name
+      }
+      workoutTypes {
+        name
+      }
+      equipment {
+        name
+      }
+      owner {
+        id
+        username
+      }
+    }
+  }
+`;
+
 export const GET_EXERCISES = gql`
   query($filter: ExerciseWhereInput) {
     exercises(where: $filter) {
@@ -81,9 +111,18 @@ export const GET_EXERCISE = gql`
       bodySection
       primaryMover
       movementType
-      trainingPhases { name }
-      workoutTypes { name }
-      equipment { name }
+      trainingPhases {
+        id
+        name
+      }
+      workoutTypes {
+        id
+        name
+      }
+      equipment {
+        id
+        name
+      }
     }
   }
 `;

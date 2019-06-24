@@ -47,7 +47,7 @@ export const isChecked = (fieldset, checkboxInput) => {
     .includes(exercise.name)
   ));
 
-  return match;
+  return !!match;
 };
 
 export const checkedValue = (props, inputValue) => (
@@ -61,3 +61,69 @@ export const checkedValue = (props, inputValue) => (
     ? props.state[inputValue.toLowerCase()]
     : null
 );
+
+export const configCheckboxVars = (stateFieldset, dbFieldset, varsFieldset) => {
+  const newOptions = [];
+  const currentOptions = [];
+
+  // Get array of strings from state
+  for (let key in stateFieldset) {
+    if (stateFieldset[key]) {
+      newOptions.push(key);
+    }
+  }
+
+  // Get array of strings from db
+  dbFieldset.forEach((input) => {
+    currentOptions.push(input.name);
+  });
+
+  // Make sure they're in the same order
+  newOptions.sort();
+  currentOptions.sort();
+
+  let somethingChanged = false;
+
+  // Make somethingChanged true if the lengths are different
+  if (newOptions.length !== currentOptions.length) {
+    somethingChanged = true;
+  } else {
+    // If they are the same, iterate over one, comparing their values in order
+    newOptions.forEach((_, i, newOptions) => {
+      if (newOptions[i] !== currentOptions[i]) {
+        somethingChanged = true;
+      }
+    });
+  }
+
+  // Run this block if an option has changed
+  if (somethingChanged) {
+    varsFieldset = {
+      create: [],
+      delete: []
+    };
+
+    // Loop over stateAttay, and if there is a value in it that's not on currentOptions,
+    // that means that it needs to be added, so add that value to variables.data.create.
+    newOptions.forEach((input) => {
+      if (!currentOptions.includes(input)) {
+        varsFieldset.create.push({ name: input });
+      }
+    });
+
+    // Loop over currentOptions, and if there's a value on it that's not on newOptions,
+    // that means it needs to be deleted, so add that value to variables.data.delete.
+    currentOptions.forEach((input) => {
+      if (!newOptions.includes(input)) {
+        // Get the matching input from props to access the id
+        const deletedInput = dbFieldset.find((propsInput) => (
+          propsInput.name === input
+        ));
+
+        varsFieldset.delete.push({ id: deletedInput.id });
+      }
+    });
+
+    return varsFieldset;
+  }
+};
