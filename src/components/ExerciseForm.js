@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { notification, Icon } from 'antd';
 import { client } from '../app';
 import { history } from '../routers/AppRouter';
@@ -271,51 +271,52 @@ class ExerciseForm extends Component {
 
   render() {
     return (
-      <form
-        className="container exercise-form"
-        onSubmit={this.props.exercise ? this.updateExercise : this.createExercise}
-      >
-        <ExerciseNameFieldset
-          value={this.state.name}
-          onChange={this.onNameChange}
-          buttonDisabled={this.state.buttonDisabled}
-        />
-        <BodySectionsFieldset
-          inputType="radio"
-          state={this.state.bodySection}
-          onChange={this.onBodySectionChange}
-        />
-        <PrimaryMoversFieldset
-          inputType="radio"
-          state={this.state.primaryMover}
-          onChange={this.onPrimaryMoverChange}
-        />
-        <MovementTypesFieldset
-          inputType="radio"
-          state={this.state.movementType}
-          onChange={this.onMovementTypeChange}
-        />
-        <TrainingPhasesFieldset
-          onChange={this.onTrainingPhasesChange}
-          state={this.state.trainingPhases}
-        />
-        <WorkoutTypesFieldset
-          onChange={this.onWorkoutTypesChange}
-          state={this.state.workoutTypes}
-        />
-        <EquipmentFieldset
-          onChange={this.onEquipmentChange}
-          state={this.state.equipment}
-        />
+      <div className="container form-container">
+        <form
+          onSubmit={this.props.exercise ? this.updateExercise : this.createExercise}
+        >
+          <ExerciseNameFieldset
+            value={this.state.name}
+            onChange={this.onNameChange}
+            buttonDisabled={this.state.buttonDisabled}
+          />
+          <BodySectionsFieldset
+            inputType="radio"
+            state={this.state.bodySection}
+            onChange={this.onBodySectionChange}
+          />
+          <PrimaryMoversFieldset
+            inputType="radio"
+            state={this.state.primaryMover}
+            onChange={this.onPrimaryMoverChange}
+          />
+          <MovementTypesFieldset
+            inputType="radio"
+            state={this.state.movementType}
+            onChange={this.onMovementTypeChange}
+          />
+          <TrainingPhasesFieldset
+            onChange={this.onTrainingPhasesChange}
+            state={this.state.trainingPhases}
+          />
+          <WorkoutTypesFieldset
+            onChange={this.onWorkoutTypesChange}
+            state={this.state.workoutTypes}
+          />
+          <EquipmentFieldset
+            onChange={this.onEquipmentChange}
+            state={this.state.equipment}
+          />
+        </form>
         {this.props.exercise && (
           <button
-            className="exercise-form__delete-btn"
+            className="delete-exercise-btn"
             onClick={this.deleteExercise}
           >
             Delete Exercise
           </button>
         )}
-      </form>
+      </div>
     );
   }
 }

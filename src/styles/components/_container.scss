@@ -1,25 +1,25 @@
 .container {
   max-width: 50rem;
   margin: 0 auto;
-  padding: 0 $m-size;
 
   @media (min-width: $desktop-breakpoint) {
     max-width: 80rem;
+    padding: 0 $l-size;
   }
 }
 
-.exercise-form {
-  max-width: 60rem;
+.form-container {
+  // max-width: 60rem;
+}
 
-  &__delete-btn {
-    background-color: #dd1f4b;
-    border-radius: 10px;
-    color: #efefef;
-    display: block;
-    font-size: 2.4rem;
-    font-weight: bold;
-    margin: $m-size auto;
-    padding: $s-size;
-    width: 100%;
-  }
+.delete-exercise-btn {
+  background-color: #dd1f4b;
+  border-radius: 10px;
+  color: #efefef;
+  display: block;
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin: $m-size auto;
+  padding: $s-size;
+  width: 100%;
 }
