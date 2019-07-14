@@ -140,8 +140,8 @@ const ExerciseList = (props) => {
             </div>
           ) : (
             <div className="exercise-list__items">
-              {data.exercises.map((exercise, index) => (
-                <div key={index} className="exercise-list__item">
+              {data.exercises.map((exercise) => (
+                <div key={exercise.id} className="exercise-list__item">
                   <p className="exercise-list__item__text">{exercise.name}</p>
                   <button
                     className="exercise-list__item__edit-btn"

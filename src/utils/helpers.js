@@ -51,7 +51,7 @@ export const isChecked = (fieldset, checkboxInput) => {
 };
 
 export const checkedValue = (props, inputValue) => (
-  // For radio inputs, return true if string value in AddExerciseForms's
+  // For radio inputs, return true if string value in ExerciseForm's
   // state property matches that of the input value.
   props.inputType === 'radio'
     ? props.state === inputValue.toLowerCase()

@@ -88,6 +88,14 @@ export const UPDATE_EXERCISE = gql`
   }
 `;
 
+export const DELETE_EXERCISE = gql`
+  mutation($where: ExerciseWhereUniqueInput!) {
+    deleteExercise(where: $where) {
+      id
+    }
+  }
+`;
+
 export const GET_EXERCISES = gql`
   query($filter: ExerciseWhereInput) {
     exercises(where: $filter) {

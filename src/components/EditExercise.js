@@ -3,10 +3,10 @@ import { Query } from 'react-apollo';
 import ExerciseForm from './ExerciseForm';
 import { GET_EXERCISE } from '../queries';
 
-const EditExercise = () => (
+const EditExercise = (props) => (
   <Query
     query={GET_EXERCISE}
-    variables={{ exerciseId: { id: this.props.match.params.id } }}
+    variables={{ exerciseId: { id: props.match.params.id } }}
   >
     {({ loading, error, data }) => (
       loading ? (
