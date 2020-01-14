@@ -27,7 +27,7 @@ class SignupModal extends Component {
   signup = (e) => {
     e.preventDefault();
 
-    // Pack up mutation variables nice and neat
+    // Pack up mutation variables nice and neat.
     const variables = {
       data: {
         username: this.state.username,
@@ -36,7 +36,7 @@ class SignupModal extends Component {
       }
     };
 
-    // Fire off createUser mutation
+    // Fire off createUser mutation.
     client.mutate({
       mutation: SIGN_UP_USER,
       variables

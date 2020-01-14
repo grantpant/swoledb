@@ -35,7 +35,7 @@
 
     &__link {
       color: $off-white;
-      padding: $xs-size;
+      margin: $xs-size;
       text-decoration: none;
     }
 
@@ -53,4 +53,6 @@
 
 .is-active {
   font-weight: bold;
+  border-bottom: 1px solid $off-white;
+  padding-bottom: .4rem;
 }
